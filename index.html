@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="page-title">Portfolio – Immanuel Mahusay</title>
+  <meta name="description" content="Immanuel Mahusay – Software Engineer portfolio showcasing work experience, skills, and projects." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ──── MOBILE SIDEBAR OVERLAY ──── -->
+  <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+  <!-- ──── LOGIN MODAL ──── -->
+  <div id="login-overlay" class="hidden">
+    <div class="login-modal">
+      <button id="close-login" class="modal-close" title="Close">✕</button>
+      <div class="login-icon">🔒</div>
+      <h2>Admin Login</h2>
+      <p>Enter your credentials to edit the portfolio</p>
+      <form id="login-form">
+        <div class="input-group">
+          <label for="login-username">Username</label>
+          <input type="text" id="login-username" placeholder="immanuel" autocomplete="username" />
+        </div>
+        <div class="input-group">
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" placeholder="••••••••" autocomplete="current-password" />
+        </div>
+        <p id="login-error" class="login-error hidden">Invalid username or password.</p>
+        <button type="submit" id="login-btn" class="btn-primary">Sign In</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ──── EDIT TOOLBAR ──── -->
+  <div id="edit-toolbar" class="hidden no-print">
+    <div class="toolbar-inner">
+      <span class="toolbar-label">✏️ Edit Mode Active</span>
+      <div class="toolbar-actions">
+        <button id="save-btn" class="btn-save">💾 Save</button>
+        <button id="logout-btn" class="btn-logout">🔓 Logout</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ──── MOBILE TOP BAR ──── -->
+  <div class="mobile-topbar no-print">
+    <button id="hamburger-btn" class="hamburger-btn" title="Open menu" aria-label="Toggle sidebar">
+      <span></span><span></span><span></span>
+    </button>
+    <span class="mobile-name" id="mobile-name">Immanuel Mahusay</span>
+    <button id="mobile-pdf-btn" class="mobile-pdf-btn" title="Download CV">📄</button>
+  </div>
+
+  <!-- ──── FIXED BUTTONS ──── -->
+  <button id="edit-trigger" title="Edit Portfolio" class="no-print">✎</button>
+  <button id="pdf-fab" title="Download CV as PDF" class="no-print">📄</button>
+
+  <!-- ──── TOAST NOTIFICATION ──── -->
+  <div id="toast" class="toast hidden no-print"></div>
+
+  <!-- ──── MAIN LAYOUT ──── -->
+  <div id="portfolio-layout" class="portfolio-layout">
+
+    <!-- ════ LEFT SIDEBAR ════ -->
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-inner">
+
+        <!-- Avatar -->
+        <div class="avatar-wrap">
+          <div style="position: relative; display: inline-block;">
+            <label id="avatar-label" class="avatar-label" title="Click to change photo">
+              <img id="avatar-img" src="profile.JPG" alt="Profile Photo of Immanuel Mahusay" class="avatar-img"
+                   onerror="this.src='avatar.png'; this.onerror=null;" />
+              <input type="file" id="avatar-input" accept="image/*" class="hidden" />
+              <span class="avatar-overlay edit-only hidden">📷</span>
+            </label>
+            <button id="toggle-avatar-btn" class="toggle-avatar-btn edit-only hidden" title="Toggle Avatar/Photo">👁️</button>
+          </div>
+        </div>
+
+        <!-- Name & Title -->
+        <div class="sidebar-name-block">
+          <h1 class="name" id="full-name" contenteditable="false" data-key="full-name">Immanuel Mahusay</h1>
+          <p class="job-title" id="job-title" contenteditable="false" data-key="job-title">Software Engineer</p>
+          <div class="status-badge">
+            <span class="status-dot"></span>
+            <span id="availability" contenteditable="false" data-key="availability">Open to opportunities</span>
+          </div>
+        </div>
+
+        <!-- PDF Download Sidebar Button -->
+        <button id="sidebar-pdf-btn" class="sidebar-pdf-btn no-print">📄 Download CV (PDF)</button>
+
+        <!-- Divider -->
+        <div class="sidebar-divider"></div>
+
+        <!-- Contact Info -->
+        <div class="sidebar-section">
+          <h3 class="sidebar-heading">Contact</h3>
+          <ul class="contact-list">
+            <li>
+              <span class="contact-icon">📧</span>
+              <span id="email" contenteditable="false" data-key="email">immanuel@qstrike.com | immanuelmahusay@mcgi.org</span>
+            </li>
+            <li>
+              <span class="contact-icon">📱</span>
+              <span id="phone" contenteditable="false" data-key="phone">+63 976 036 0023</span>
+            </li>
+            <li>
+              <span class="contact-icon">📍</span>
+              <span id="location" contenteditable="false" data-key="location">P2-B2-L35 Highview, Apalit, Philippines</span>
+            </li>
+            <li>
+              <span class="contact-icon">🌐</span>
+              <span id="website" contenteditable="false" data-key="website">Filipino • Dec 24, 1991</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Divider -->
+        <div class="sidebar-divider"></div>
+
+        <!-- Skills (Categorized & Draggable) -->
+        <div class="sidebar-section" id="section-skills">
+          <div class="sidebar-heading-wrap" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <h3 class="sidebar-heading" style="margin-bottom:0;">Skills</h3>
+          </div>
+          <div id="skills-container" class="skills-container-main"></div>
+        </div>
+
+        <!-- Divider -->
+        <div class="sidebar-divider"></div>
+
+        <!-- Social Links -->
+        <div class="sidebar-section" id="section-social">
+          <div class="sidebar-heading-wrap" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <h3 class="sidebar-heading" style="margin-bottom:0;">Social</h3>
+          </div>
+          <div class="social-links">
+            <a id="link-github" href="#" target="_blank" class="social-btn" data-key="link-github">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+              GitHub
+            </a>
+            <a id="link-linkedin" href="#" target="_blank" class="social-btn" data-key="link-linkedin">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              LinkedIn
+            </a>
+            <a id="link-twitter" href="#" target="_blank" class="social-btn" data-key="link-twitter">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              Twitter / X
+            </a>
+          </div>
+          <div class="edit-only hidden" id="social-edit-area">
+            <div class="social-edit-row"><label>GitHub URL</label><input type="url" id="input-link-github" class="social-url-input" placeholder="https://github.com/you" data-key="link-github" /></div>
+            <div class="social-edit-row"><label>LinkedIn URL</label><input type="url" id="input-link-linkedin" class="social-url-input" placeholder="https://linkedin.com/in/you" data-key="link-linkedin" /></div>
+            <div class="social-edit-row"><label>Twitter/X URL</label><input type="url" id="input-link-twitter" class="social-url-input" placeholder="https://twitter.com/you" data-key="link-twitter" /></div>
+          </div>
+        </div>
+
+        <!-- Languages -->
+        <div class="sidebar-divider"></div>
+        <div class="sidebar-section" id="section-languages">
+          <div class="sidebar-heading-wrap" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <h3 class="sidebar-heading" style="margin-bottom:0;">Languages</h3>
+          </div>
+          <div id="lang-container" class="lang-list"></div>
+          <div class="edit-only hidden" id="lang-edit-area">
+            <textarea id="lang-input" class="skills-textarea" placeholder="e.g. English – Native&#10;Filipino – Native"></textarea>
+          </div>
+        </div>
+
+        <!-- AI & Automation -->
+        <div class="sidebar-divider"></div>
+        <div class="sidebar-section ai-section" id="section-sidebar-ai">
+          <div class="sidebar-heading-wrap" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <h3 class="sidebar-heading ai-heading" style="margin-bottom:0;">
+              <span class="ai-pulse">✦</span> AI &amp; Automation
+            </h3>
+          </div>
+          <div id="ai-skills-container" class="ai-skills-wrap"></div>
+        </div>
+
+      </div><!-- /sidebar-inner -->
+    </aside>
+
+    <!-- ════ MAIN CONTENT ════ -->
+    <main class="main-content">
+
+      <!-- ── About / Summary ── -->
+      <section class="content-section" id="section-about">
+        <div class="section-header">
+          <h2 class="section-title"><span class="section-icon">👋</span> About Me</h2>
+        </div>
+        <div class="about-card">
+          <p id="about-text" contenteditable="false" data-key="about-text">
+            Experienced in developing seamless user interfaces using HTML, CSS, and JavaScript. Utilizes modern frameworks and libraries to enhance functionality and improve the user experience. Solid grasp of responsive design principles and excels in effective collaboration within a team environment.
+          </p>
+        </div>
+      </section>
+
+      <!-- ── Work Experience ── -->
+      <section class="content-section" id="section-experience">
+        <div class="section-header">
+          <h2 class="section-title"><span class="section-icon">💼</span> Work Experience</h2>
+          <button class="add-btn edit-only hidden" id="add-experience-btn">+ Add</button>
+        </div>
+        <div id="experience-list" class="timeline"></div>
+      </section>
+
+      <!-- ── Education ── -->
+      <section class="content-section" id="section-education">
+        <div class="section-header">
+          <h2 class="section-title"><span class="section-icon">🎓</span> Education</h2>
+          <button class="add-btn edit-only hidden" id="add-education-btn">+ Add</button>
+        </div>
+        <div id="education-list" class="timeline"></div>
+      </section>
+
+      <!-- ── Projects ── -->
+      <section class="content-section" id="section-projects">
+        <div class="section-header">
+          <h2 class="section-title"><span class="section-icon">🚀</span> Projects</h2>
+        </div>
+
+        <!-- Sub: Web Systems -->
+        <div class="project-subsection">
+          <div class="subsection-header subsection-header--system">
+            <div class="subsection-label">
+              <span class="subsection-icon">⚙️</span>
+              <h3 class="subsection-title">Web Systems</h3>
+              <span class="subsection-count" id="websystem-count">0</span>
+            </div>
+            <button class="add-btn edit-only hidden" id="add-websystem-btn">+ Add</button>
+          </div>
+          <div id="websystems-grid" class="projects-grid projects-grid--system"></div>
+        </div>
+
+        <!-- Sub: Static Websites -->
+        <div class="project-subsection">
+          <div class="subsection-header subsection-header--static">
+            <div class="subsection-label">
+              <span class="subsection-icon">🌐</span>
+              <h3 class="subsection-title">Static Websites</h3>
+              <span class="subsection-count subsection-count--static" id="staticweb-count">0</span>
+            </div>
+            <button class="add-btn add-btn--static edit-only hidden" id="add-staticweb-btn">+ Add</button>
+          </div>
+          <div id="staticweb-grid" class="projects-grid projects-grid--static"></div>
+        </div>
+      </section>
+
+
+      <!-- ── AI & Automation Highlight ── -->
+      <section class="content-section" id="section-ai">
+        <div class="section-header">
+          <h2 class="section-title ai-title"><span class="section-icon">🤖</span> AI &amp; Automation</h2>
+        </div>
+        <div class="ai-highlight-grid" id="ai-highlight-grid"></div>
+      </section>
+
+      <!-- ── Certifications ── -->
+      <section class="content-section" id="section-certifications">
+        <div class="section-header">
+          <h2 class="section-title"><span class="section-icon">🏆</span> Certifications</h2>
+          <button class="add-btn edit-only hidden" id="add-cert-btn">+ Add</button>
+        </div>
+        <div id="cert-list" class="cert-grid"></div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="portfolio-footer">
+        <p>© <span id="footer-year"></span> <span id="footer-name">Immanuel Mahusay</span>. All rights reserved.</p>
+        <p class="footer-sub">Built with ❤️ &amp; a sprinkle of ☕</p>
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- ──── ADD / EDIT ITEM MODAL ──── -->
+  <div id="item-modal-overlay" class="hidden no-print">
+    <div class="item-modal" id="item-modal">
+      <button class="modal-close" id="close-item-modal">✕</button>
+      <h3 id="item-modal-title">Add Item</h3>
+      <div id="item-modal-body"></div>
+      <div class="modal-actions">
+        <button id="item-modal-delete" class="btn-danger hidden">🗑 Delete</button>
+        <button id="item-modal-save" class="btn-primary">💾 Save</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
