@@ -1245,4 +1245,109 @@ document.addEventListener('DOMContentLoaded', () => {
       closeItemModal();
     }
   });
+
+  // ══════════════════════════════════════
+  //  CHATGPT WIDGET LOGIC
+  // ══════════════════════════════════════
+  const chatFab = document.getElementById('chat-fab');
+  const chatWindow = document.getElementById('chat-window');
+  const closeChatBtn = document.getElementById('close-chat');
+  const chatInput = document.getElementById('chat-input');
+  const sendChatBtn = document.getElementById('send-chat');
+  const chatMessages = document.getElementById('chat-messages');
+
+  function toggleChat() {
+    chatWindow.classList.toggle('hidden');
+    if (!chatWindow.classList.contains('hidden')) {
+      chatInput.focus();
+    }
+  }
+
+  chatFab.addEventListener('click', toggleChat);
+  closeChatBtn.addEventListener('click', () => chatWindow.classList.add('hidden'));
+
+  function addMessage(text, sender) {
+    const msgDiv = document.createElement('div');
+    msgDiv.classList.add('message', sender === 'user' ? 'user-message' : 'ai-message');
+    msgDiv.textContent = text;
+    chatMessages.appendChild(msgDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  function showTypingIndicator() {
+    const indicator = document.createElement('div');
+    indicator.classList.add('typing-indicator');
+    indicator.id = 'typing-indicator';
+    indicator.innerHTML = '<span></span><span></span><span></span>';
+    chatMessages.appendChild(indicator);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  function removeTypingIndicator() {
+    const indicator = document.getElementById('typing-indicator');
+    if (indicator) indicator.remove();
+  }
+
+  async function handleSendChat() {
+    const text = chatInput.value.trim();
+    if (!text) return;
+    
+    addMessage(text, 'user');
+    chatInput.value = '';
+    
+    showTypingIndicator();
+
+    // ── NOTE: To use the real OpenAI API, replace the mock logic below with a fetch request ──
+    /*
+    try {
+      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer YOUR_OPENAI_API_KEY' // IMPORTANT: Keep this secure!
+        },
+        body: JSON.stringify({
+          model: 'gpt-3.5-turbo',
+          messages: [
+            { role: 'system', content: 'You are Immanuel Mahusay\\'s AI assistant. Answer questions about his portfolio.' },
+            { role: 'user', content: text }
+          ]
+        })
+      });
+      const data = await response.json();
+      removeTypingIndicator();
+      addMessage(data.choices[0].message.content, 'ai');
+    } catch (err) {
+      removeTypingIndicator();
+      addMessage("Sorry, I'm having trouble connecting to my brain right now.", 'ai');
+    }
+    */
+
+    // MOCK RESPONSE LOGIC (Fallback)
+    setTimeout(() => {
+      removeTypingIndicator();
+      let response = "I'm a demo AI assistant! Immanuel is a Software Engineer experienced in Vue.js, PIXI.js, and AI automation. Would you like to know about his projects or work experience?";
+      
+      const lower = text.toLowerCase();
+      if (lower.includes('project')) {
+        response = "Immanuel has worked on several amazing projects like the LoanPro Management System, MCGI Hub, and various E-Commerce sites. You can find them in the Projects section!";
+      } else if (lower.includes('contact') || lower.includes('email') || lower.includes('hire')) {
+        response = "You can contact Immanuel at immanuel@qstrike.com or immanuelmahusay@mcgi.org. His phone number is +63 976 036 0023.";
+      } else if (lower.includes('experience') || lower.includes('work')) {
+        response = "He is currently a Software Engineer Lead at QuickStrike Innovation Phil., and a Front-End Developer at MCGI IT. He has over 10 years of overall experience.";
+      } else if (lower.includes('skill') || lower.includes('tech')) {
+        response = "His main skills include Vue.js, TypeScript, Node.js, PHP, MySQL, and AI automation tools like n8n and LLM integrations.";
+      } else if (lower.includes('hi') || lower.includes('hello')) {
+        response = "Hello there! How can I help you learn more about Immanuel's background and skills?";
+      }
+
+      addMessage(response, 'ai');
+    }, 1000);
+  }
+
+  sendChatBtn.addEventListener('click', handleSendChat);
+  chatInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') handleSendChat();
+  });
+
 });
