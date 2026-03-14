@@ -758,7 +758,7 @@ body.edit-active [contenteditable="true"]:focus { border-bottom-color: var(--acc
   position: fixed; inset: 0;
   background: rgba(0,0,0,0.75);
   backdrop-filter: blur(8px);
-  z-index: 1000;
+  z-index: 5000; /* Highest level for system modals */
   display: flex; align-items: center; justify-content: center;
   animation: fadeIn 0.2s ease;
 }
@@ -828,7 +828,7 @@ body.edit-active [contenteditable="true"]:focus { border-bottom-color: var(--acc
   position: fixed; inset: 0;
   background: rgba(0,0,0,0.75);
   backdrop-filter: blur(8px);
-  z-index: 1000;
+  z-index: 5000;
   display: flex; align-items: center; justify-content: center;
   animation: fadeIn 0.2s ease;
 }
@@ -1530,12 +1530,49 @@ body.edit-active [contenteditable="true"]:focus { border-bottom-color: var(--acc
 }
 
 @media (max-width: 768px) {
-  .chat-widget {
-    bottom: 80px;
-    right: 20px;
+  /* Align all 3 buttons in one line on mobile */
+  .chat-widget, #pdf-fab, #edit-trigger {
+    position: fixed;
+    bottom: 24px !important;
+    z-index: 1000;
+    transition: var(--transition);
   }
+
+  /* Reset button sizes for consistency */
+  .chat-fab, #pdf-fab, #edit-trigger {
+    width: 48px !important;
+    height: 48px !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #pdf-fab { right: 24px !important; bottom: 24px !important; }
+  .chat-widget { 
+    right: 88px !important; 
+    bottom: 24px !important; 
+    gap: 0; 
+  }
+  #edit-trigger { 
+    right: 152px !important; 
+    bottom: 24px !important; 
+  }
+
   .chat-window {
-    width: calc(100vw - 40px);
-    max-width: 350px;
+    width: calc(100vw - 32px);
+    height: 60vh;
+    max-width: none;
+    bottom: 74px;
+    right: -64px; /* Centering the window above the FAB */
+    position: absolute;
+    z-index: 1001;
   }
+}
+
+/* Ensure Chat doesn't distract when Modal/Login is open */
+#login-overlay:not(.hidden) ~ #chat-widget,
+#item-modal-overlay:not(.hidden) ~ #chat-widget {
+  opacity: 0.3;
+  pointer-events: none;
+  transform: scale(0.9);
 }
