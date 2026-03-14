@@ -179,8 +179,14 @@
         <div class="sidebar-divider"></div>
         <div class="sidebar-section ai-section" id="section-sidebar-ai">
           <div class="sidebar-heading-wrap" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-            <h3 class="sidebar-heading ai-heading" style="margin-bottom:0;">
-              <span class="ai-pulse">✦</span> AI &amp; Automation
+            <h3 class="sidebar-heading ai-heading" style="margin-bottom:0; display: flex; flex-direction: column; align-items: flex-start; gap: 4px;">
+              <span style="display: flex; align-items: center; gap: 6px;">
+                <span class="ai-pulse">✦</span> AI &amp; Automation
+              </span>
+              <div style="display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px;">
+                <span class="learning-badge">New Focus</span>
+                <span class="learning-badge" style="animation-delay: 1s;">Exploring</span>
+              </div>
             </h3>
           </div>
           <div id="ai-skills-container" class="ai-skills-wrap"></div>
@@ -259,7 +265,7 @@
       <!-- ── AI & Automation Highlight ── -->
       <section class="content-section" id="section-ai">
         <div class="section-header">
-          <h2 class="section-title ai-title"><span class="section-icon">🤖</span> AI &amp; Automation</h2>
+          <h2 class="section-title ai-title"><span class="section-icon">🤖</span> AI &amp; Automation <span class="learning-badge">New Focus</span> <span class="learning-badge" style="animation-delay: 1s;">Exploring</span></h2>
         </div>
         <div class="ai-highlight-grid" id="ai-highlight-grid"></div>
       </section>
@@ -293,6 +299,43 @@
         <button id="item-modal-save" class="btn-primary">💾 Save</button>
       </div>
     </div>
+  </div>
+
+  <!-- ──── CHATGPT WIDGET ──── -->
+  <div id="chat-widget" class="chat-widget no-print">
+    <div id="chat-window" class="chat-window hidden">
+      <div class="chat-header">
+        <span style="display: flex; align-items: center; gap: 8px;">
+          <svg style="width: 18px; height: 18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 8V4H8"/>
+            <rect width="16" height="12" x="4" y="8" rx="2"/>
+            <path d="M2 14h2"/>
+            <path d="M20 14h2"/>
+            <path d="M15 13v2"/>
+            <path d="M9 13v2"/>
+          </svg>
+          AI Assistant
+        </span>
+        <button id="close-chat" class="close-chat-btn" title="Close Chat">✕</button>
+      </div>
+      <div id="chat-messages" class="chat-messages">
+        <div class="message ai-message">Hi there! I'm an AI assistant. How can I help you learn more about Immanuel?</div>
+      </div>
+      <div class="chat-input-area">
+        <input type="text" id="chat-input" placeholder="Ask about my experience..." autocomplete="off" />
+        <button id="send-chat" class="send-chat-btn" title="Send (Enter)">➤</button>
+      </div>
+    </div>
+    <button id="chat-fab" class="chat-fab" title="Chat with AI">
+      <svg style="width: 26px; height: 26px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 8V4H8"/>
+        <rect width="16" height="12" x="4" y="8" rx="2"/>
+        <path d="M2 14h2"/>
+        <path d="M20 14h2"/>
+        <path d="M15 13v2"/>
+        <path d="M9 13v2"/>
+      </svg>
+    </button>
   </div>
 
   <script src="app.js"></script>
