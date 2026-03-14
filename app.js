@@ -194,13 +194,6 @@ const DEFAULT_DATA = {
       desc: 'A personal portfolio / fan site for artist Kirstin Regalado. Beautifully designed with a music-themed aesthetic, gallery, and smooth animations.',
       tags: ['HTML','CSS','JavaScript','Bootstrap'],
       link: 'https://immanuelmm.github.io/kirstin-regalado/'
-    },
-    {
-      id: 'proj9',
-      title: 'Personal Portfolio v1 (Student)',
-      desc: 'My original portfolio website built as a student. A milestone project showcasing my early web development skills with HTML, CSS, and JavaScript.',
-      tags: ['HTML','CSS','JavaScript','Bootstrap'],
-      link: 'https://immanuelmm.github.io/My-portfolio/'
     }
   ],
 
