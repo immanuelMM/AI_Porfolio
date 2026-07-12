@@ -9,6 +9,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <!-- docx.js for Word document generation -->
+  <script src="docx.js"></script>
+  <!-- FileSaver.js for triggering downloads -->
+  <script src="FileSaver.min.js"></script>
 </head>
 <body>
 
@@ -61,11 +65,181 @@
   <button id="edit-trigger" title="Edit Portfolio" class="no-print">✎</button>
   <button id="pdf-fab" title="Download CV as PDF" class="no-print">📄</button>
 
+  <!-- ──── PDF STYLE MODAL ──── -->
+  <div id="pdf-modal-overlay" class="pdf-modal-overlay no-print hidden">
+    <div class="pdf-modal">
+      <div class="pdf-modal-header">
+        <span class="pdf-modal-title">📄 Download CV as PDF</span>
+        <button id="pdf-modal-close" class="pdf-modal-close" title="Close">✕</button>
+      </div>
+      <p id="pdf-modal-subtitle" class="pdf-modal-subtitle">Choose a layout for your CV</p>
+
+      <!-- Step 1: Layout Selection -->
+      <div id="pdf-step-layout" class="pdf-step-container">
+        <p class="pdf-modal-group-label" style="margin-top: 0;">Layout Styles</p>
+        <div class="pdf-size-options">
+          <button class="pdf-layout-btn pdf-size-btn" data-layout="modern">
+            <span class="pdf-theme-swatch pdf-theme-swatch--modern"></span>
+            <div>
+              <span class="pdf-size-name">Modern Layout</span>
+              <span class="pdf-size-desc">Sidebar on the left</span>
+            </div>
+          </button>
+          <button class="pdf-layout-btn pdf-size-btn" data-layout="classic">
+            <span class="pdf-theme-swatch pdf-theme-swatch--classic"></span>
+            <div>
+              <span class="pdf-size-name">Classic Layout</span>
+              <span class="pdf-size-desc">Sidebar on the right</span>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 2: Color/Theme Selection -->
+      <div id="pdf-step-color" class="pdf-step-container hidden">
+        <p class="pdf-modal-group-label" style="margin-top: 0;">Default Layout Theme</p>
+        <div class="pdf-size-options" style="margin-bottom: 16px;">
+          <button class="pdf-size-btn" id="pdf-default-theme-btn" data-theme="modern">
+            <span class="pdf-theme-swatch" id="pdf-default-theme-swatch"></span>
+            <div>
+              <span class="pdf-size-name" id="pdf-default-theme-name">Modern</span>
+              <span class="pdf-size-desc" id="pdf-default-theme-desc">Dark purple sidebar</span>
+            </div>
+          </button>
+        </div>
+
+        <p class="pdf-modal-group-label">Clean · Light tinted sidebar</p>
+        <div class="pdf-color-grid">
+          <button class="pdf-color-btn" data-theme="clean-yellow">
+            <span class="pdf-color-dot" style="background:#fbbf24"></span>
+            <span class="pdf-color-name">Yellow</span>
+          </button>
+          <button class="pdf-color-btn" data-theme="clean-blue">
+            <span class="pdf-color-dot" style="background:#38bdf8"></span>
+            <span class="pdf-color-name">Blue</span>
+          </button>
+          <button class="pdf-color-btn" data-theme="clean-green">
+            <span class="pdf-color-dot" style="background:#4ade80"></span>
+            <span class="pdf-color-name">Green</span>
+          </button>
+          <button class="pdf-color-btn" data-theme="clean-rose">
+            <span class="pdf-color-dot" style="background:#fb7185"></span>
+            <span class="pdf-color-name">Rose</span>
+          </button>
+          <button class="pdf-color-btn" data-theme="clean-purple">
+            <span class="pdf-color-dot" style="background:#a78bfa"></span>
+            <span class="pdf-color-name">Purple</span>
+          </button>
+          <button class="pdf-color-btn" data-theme="clean-teal">
+            <span class="pdf-color-dot" style="background:#2dd4bf"></span>
+            <span class="pdf-color-name">Teal</span>
+          </button>
+        </div>
+
+        <p class="pdf-modal-group-label">Melanie · Light sidebar</p>
+        <div class="pdf-color-grid">
+          <button class="pdf-color-btn" data-theme="melanie-yellow">
+            <span class="pdf-color-dot" style="background:#fbbf24"></span>
+            <span class="pdf-color-name">Yellow</span>
+          </button>
+          <button class="pdf-color-btn" data-theme="melanie-blue">
+            <span class="pdf-color-dot" style="background:#38bdf8"></span>
+            <span class="pdf-color-name">Blue</span>
+          </button>
+          <button class="pdf-color-btn" data-theme="melanie-green">
+            <span class="pdf-color-dot" style="background:#4ade80"></span>
+            <span class="pdf-color-name">Green</span>
+          </button>
+          <button class="pdf-color-btn" data-theme="melanie-rose">
+            <span class="pdf-color-dot" style="background:#fb7185"></span>
+            <span class="pdf-color-name">Rose</span>
+          </button>
+          <button class="pdf-color-btn" data-theme="melanie-purple">
+            <span class="pdf-color-dot" style="background:#a78bfa"></span>
+            <span class="pdf-color-name">Purple</span>
+          </button>
+          <button class="pdf-color-btn" data-theme="melanie-teal">
+            <span class="pdf-color-dot" style="background:#2dd4bf"></span>
+            <span class="pdf-color-name">Teal</span>
+          </button>
+        </div>
+
+        <p class="pdf-modal-group-label">Melanie · Dark sidebar</p>
+        <div class="pdf-color-grid">
+          <button class="pdf-color-btn" data-theme="melanie-dark-navy">
+            <span class="pdf-color-dot" style="background:#0f172a; border:2px solid #60a5fa"></span>
+            <span class="pdf-color-name">Navy</span>
+          </button>
+          <button class="pdf-color-btn" data-theme="melanie-dark-slate">
+            <span class="pdf-color-dot" style="background:#1f2937; border:2px solid #34d399"></span>
+            <span class="pdf-color-name">Slate</span>
+          </button>
+          <button class="pdf-color-btn" data-theme="melanie-dark-purple">
+            <span class="pdf-color-dot" style="background:#1a1040; border:2px solid #a78bfa"></span>
+            <span class="pdf-color-name">Midnight</span>
+          </button>
+          <button class="pdf-color-btn" data-theme="melanie-classic">
+            <span class="pdf-color-dot" style="background:#1e293b; border:2px solid #4ade80"></span>
+            <span class="pdf-color-name">Classic</span>
+          </button>
+        </div>
+
+        <p class="pdf-modal-group-label">Bold · Filled heading boxes</p>
+        <div class="pdf-color-grid">
+          <button class="pdf-color-btn" data-theme="bold-yellow">
+            <span class="pdf-color-dot" style="background:#fbbf24"></span>
+            <span class="pdf-color-name">Yellow</span>
+          </button>
+          <button class="pdf-color-btn" data-theme="bold-blue">
+            <span class="pdf-color-dot" style="background:#38bdf8"></span>
+            <span class="pdf-color-name">Blue</span>
+          </button>
+          <button class="pdf-color-btn" data-theme="bold-green">
+            <span class="pdf-color-dot" style="background:#4ade80"></span>
+            <span class="pdf-color-name">Green</span>
+          </button>
+          <button class="pdf-color-btn" data-theme="bold-rose">
+            <span class="pdf-color-dot" style="background:#fb7185"></span>
+            <span class="pdf-color-name">Rose</span>
+          </button>
+          <button class="pdf-color-btn" data-theme="bold-purple">
+            <span class="pdf-color-dot" style="background:#a78bfa"></span>
+            <span class="pdf-color-name">Purple</span>
+          </button>
+          <button class="pdf-color-btn" data-theme="bold-teal">
+            <span class="pdf-color-dot" style="background:#2dd4bf"></span>
+            <span class="pdf-color-name">Teal</span>
+          </button>
+        </div>
+
+        <button id="pdf-back-btn" class="pdf-back-btn">← Change Layout</button>
+      </div><!-- /pdf-step-color -->
+
+      <!-- ── Always-visible export footer ── -->
+      <div class="pdf-export-divider">
+        <span>Also export as</span>
+      </div>
+      <div class="pdf-export-actions">
+        <button id="pdf-word-btn" class="pdf-export-btn pdf-export-btn--word" title="Download as Word Document">
+          <span class="pdf-export-icon">📝</span>
+          <span>Word Doc</span>
+        </button>
+        <button id="pdf-ai-btn" class="pdf-export-btn pdf-export-btn--ai" title="One-Column AI-Readable PDF">
+          <span class="pdf-export-icon">🤖</span>
+          <span>AI Format</span>
+        </button>
+      </div>
+    </div><!-- /pdf-modal -->
+  </div><!-- /pdf-modal-overlay -->
+
   <!-- ──── TOAST NOTIFICATION ──── -->
   <div id="toast" class="toast hidden no-print"></div>
 
   <!-- ──── MAIN LAYOUT ──── -->
   <div id="portfolio-layout" class="portfolio-layout">
+
+    <!-- Melanie-style print header (hidden on screen, JS-populated) -->
+    <div id="melanie-header" class="melanie-header"></div>
 
     <!-- ════ LEFT SIDEBAR ════ -->
     <aside id="sidebar" class="sidebar">
@@ -101,7 +275,7 @@
         <div class="sidebar-divider"></div>
 
         <!-- Contact Info -->
-        <div class="sidebar-section">
+        <div class="sidebar-section" id="section-contact">
           <h3 class="sidebar-heading">Contact</h3>
           <ul class="contact-list">
             <li>
@@ -162,6 +336,9 @@
             <div class="social-edit-row"><label>Twitter/X URL</label><input type="url" id="input-link-twitter" class="social-url-input" placeholder="https://twitter.com/you" data-key="link-twitter" /></div>
           </div>
         </div>
+
+        <!-- PDF page-break: forces Languages + AI onto the last PDF page -->
+        <div class="sidebar-pdf-page-break"></div>
 
         <!-- Languages -->
         <div class="sidebar-divider"></div>

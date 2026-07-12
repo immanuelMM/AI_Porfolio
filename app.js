@@ -15,18 +15,18 @@ const DEFAULT_DATA = {
   'use-profile-pic': true,
   moduleVisibility: {}, // Map of element ID to boolean (true defaults to visible)
   // Sidebar fields
-  'full-name':    'Immanuel Mahusay',
-  'job-title':    'Software Engineer',
+  'full-name': 'Immanuel Mahusay',
+  'job-title': 'Software Engineer',
   'availability': 'Open to opportunities',
-  'email':        'immanuel@qstrike.com | immanuelmahusay@mcgi.org',
-  'phone':        '+63 976 036 0023',
-  'location':     'P2-B2-L35 Highview, Apalit, Philippines',
-  'website':      'Filipino  •  Dec 24, 1991',
+  'email': 'immanuel@qstrike.com | immanuelmahusay@mcgi.org',
+  'phone': '+63 976 036 0023',
+  'location': 'P2-B2-L35 Highview, Apalit, Philippines',
+  'website': 'Filipino  •  Dec 24, 1991',
 
   // Social
-  'link-github':   'https://github.com/immanuelmm',
+  'link-github': 'https://github.com/immanuelmm',
   'link-linkedin': 'https://linkedin.com/in/',
-  'link-twitter':  'https://twitter.com/',
+  'link-twitter': 'https://twitter.com/',
 
   // About
   'about-text': 'Experienced in developing seamless user interfaces using HTML, CSS, and JavaScript. Utilizes modern frameworks and libraries to enhance functionality and improve the user experience. Solid grasp of responsive design principles and excels in effective collaboration within a team environment.',
@@ -58,7 +58,7 @@ const DEFAULT_DATA = {
   // Languages
   languages: [
     { name: 'Filipino', level: 'Native' },
-    { name: 'English',  level: 'Proficient' }
+    { name: 'English', level: 'Proficient' }
   ],
 
   // Work Experience
@@ -143,57 +143,65 @@ const DEFAULT_DATA = {
       id: 'proj1',
       title: 'LoanPro – Loan Management System',
       desc: 'A full-featured loan management web app with borrower tracking, loan lifecycle management, amortization schedules, payment recording, PDF receipts, and a KPI dashboard. Built with vanilla JS and a Node.js backend.',
-      tags: ['JavaScript','Node.js','MySQL','HTML','CSS','PDF'],
-      link: 'https://loanpro-ui.onrender.com/#dashboard'
+      tags: ['JavaScript', 'Node.js', 'MySQL', 'HTML', 'CSS', 'PDF'],
+      link: 'https://loanpro-ui.onrender.com/#dashboard',
+      github: 'https://github.com/immanuelmm/loanpro-ui'
     },
     {
       id: 'proj2',
       title: 'MCGI Hub',
       desc: 'Contributed to the MCGI Hub platform – a large-scale internal web application for the Members Church of God International. Built dynamic, reusable Vue.js components with a focus on performance, security, and scalability.',
-      tags: ['Vue.js','TypeScript','JavaScript','CSS'],
-      link: 'https://hub.mcgi.org/calendar'
+      tags: ['Vue.js', 'TypeScript', 'JavaScript', 'CSS'],
+      link: 'https://hub.mcgi.org/calendar',
+      github: ''
     },
     {
       id: 'proj3',
       title: 'Axe Uniforms – E-Commerce Website',
       desc: 'Professional uniform and apparel e-commerce website. Implemented responsive product listings, shopping cart, and checkout flow for a Philippine-based uniform supplier.',
-      tags: ['HTML','CSS','JavaScript','E-Commerce'],
-      link: 'https://axeuniforms.com/'
+      tags: ['HTML', 'CSS', 'JavaScript', 'E-Commerce'],
+      link: 'https://axeuniforms.com/',
+      github: ''
     },
     {
       id: 'proj4',
       title: 'PG Uniforms – Corporate Website',
       desc: 'Corporate website for PG Uniforms, a Philippine uniform manufacturer. Delivered a clean, responsive design showcasing product catalog and company information.',
-      tags: ['HTML','CSS','JavaScript','Responsive'],
-      link: 'https://www.pguniforms.com/'
+      tags: ['HTML', 'CSS', 'JavaScript', 'Responsive'],
+      link: 'https://www.pguniforms.com/',
+      github: ''
     },
     {
       id: 'proj5',
       title: 'OneKnowledge CLLC – Company Profile',
       desc: 'Company profile website for OneKnowledge CLLC. Designed and developed a clean, professional multi-page website with smooth navigation and responsive layout.',
-      tags: ['HTML','CSS','JavaScript','Bootstrap'],
-      link: 'https://immanuelmm.github.io/OneKnowledgeCLLC/'
+      tags: ['HTML', 'CSS', 'JavaScript', 'Bootstrap'],
+      link: 'https://immanuelmm.github.io/OneKnowledgeCLLC/',
+      github: 'https://github.com/immanuelmm/OneKnowledgeCLLC'
     },
     {
       id: 'proj6',
       title: 'KR – Landing Page',
       desc: 'A sleek landing page project featuring modern UI design, smooth scroll effects, and a fully responsive layout optimized for all screen sizes.',
-      tags: ['HTML','CSS','JavaScript','Responsive'],
-      link: 'https://immanuelmm.github.io/KR/'
+      tags: ['HTML', 'CSS', 'JavaScript', 'Responsive'],
+      link: 'https://immanuelmm.github.io/KR/',
+      github: 'https://github.com/immanuelmm/KR'
     },
     {
       id: 'proj7',
       title: 'Survivor Game – Interactive Web App',
       desc: 'An interactive browser-based Survivor-themed game application. Features dynamic game logic, player management, and engaging UI built entirely with vanilla JavaScript.',
-      tags: ['JavaScript','HTML','CSS','Game'],
-      link: 'https://immanuelmm.github.io/Survivor_2/'
+      tags: ['JavaScript', 'HTML', 'CSS', 'Game'],
+      link: 'https://immanuelmm.github.io/Survivor_2/',
+      github: 'https://github.com/immanuelmm/Survivor_2'
     },
     {
       id: 'proj8',
       title: 'Kirstin Regalado – Artist Portfolio',
       desc: 'A personal portfolio / fan site for artist Kirstin Regalado. Beautifully designed with a music-themed aesthetic, gallery, and smooth animations.',
-      tags: ['HTML','CSS','JavaScript','Bootstrap'],
-      link: 'https://immanuelmm.github.io/kirstin-regalado/'
+      tags: ['HTML', 'CSS', 'JavaScript', 'Bootstrap'],
+      link: 'https://immanuelmm.github.io/kirstin-regalado/',
+      github: 'https://github.com/immanuelmm/kirstin-regalado'
     }
   ],
 
@@ -203,28 +211,28 @@ const DEFAULT_DATA = {
       id: 'ws1',
       title: 'LoanPro – Loan Management System',
       desc: 'A full-featured loan management web app with borrower tracking, loan lifecycle management, amortization schedules, payment recording, PDF receipts, and a KPI dashboard.',
-      tags: ['JavaScript','Node.js','MySQL','HTML','CSS','PDF'],
+      tags: ['JavaScript', 'Node.js', 'MySQL', 'HTML', 'CSS', 'PDF'],
       link: 'https://loanpro-ui.onrender.com/#dashboard'
     },
     {
       id: 'ws2',
       title: 'MCGI Hub',
       desc: 'Contributed to the MCGI Hub – a large-scale internal web application for MCGI. Built dynamic, reusable Vue.js components with a focus on performance, security, and scalability.',
-      tags: ['Vue.js','TypeScript','JavaScript','CSS'],
+      tags: ['Vue.js', 'TypeScript', 'JavaScript', 'CSS'],
       link: 'https://hub.mcgi.org/calendar'
     },
     {
       id: 'ws3',
       title: 'Axe Uniforms – E-Commerce System',
       desc: 'Professional uniform and apparel e-commerce system with responsive product listings, shopping cart, and checkout flow for a Philippine-based uniform supplier.',
-      tags: ['HTML','CSS','JavaScript','E-Commerce'],
+      tags: ['HTML', 'CSS', 'JavaScript', 'E-Commerce'],
       link: 'https://axeuniforms.com/'
     },
     {
       id: 'ws4',
       title: 'PG Uniforms – Corporate System',
       desc: 'Corporate web system for PG Uniforms, a Philippine uniform manufacturer. Clean, responsive design showcasing product catalog and company information.',
-      tags: ['HTML','CSS','JavaScript','Responsive'],
+      tags: ['HTML', 'CSS', 'JavaScript', 'Responsive'],
       link: 'https://www.pguniforms.com/'
     }
   ],
@@ -235,35 +243,35 @@ const DEFAULT_DATA = {
       id: 'sp1',
       title: 'Survivor Game – Interactive Web App',
       desc: 'An interactive browser-based Survivor-themed game with dynamic game logic, player management, voting mechanics, and engaging UI built entirely with vanilla JavaScript.',
-      tags: ['JavaScript','HTML','CSS','Game Logic'],
+      tags: ['JavaScript', 'HTML', 'CSS', 'Game Logic'],
       link: 'https://immanuelmm.github.io/Survivor_2/'
     },
     {
       id: 'sp2',
       title: 'OneKnowledge CLLC – Company Profile',
       desc: 'Company profile website for OneKnowledge CLLC with smooth navigation, responsive layout, and professional multi-page design.',
-      tags: ['HTML','CSS','JavaScript','Bootstrap'],
+      tags: ['HTML', 'CSS', 'JavaScript', 'Bootstrap'],
       link: 'https://immanuelmm.github.io/OneKnowledgeCLLC/'
     },
     {
       id: 'sp3',
       title: 'KR – Landing Page',
       desc: 'A sleek landing page with modern UI design, smooth scroll effects, and a fully responsive layout optimized for all screen sizes.',
-      tags: ['HTML','CSS','JavaScript','Responsive'],
+      tags: ['HTML', 'CSS', 'JavaScript', 'Responsive'],
       link: 'https://immanuelmm.github.io/KR/'
     },
     {
       id: 'sp4',
       title: 'Kirstin Regalado – Artist Portfolio',
       desc: 'A personal portfolio fan site for artist Kirstin Regalado with a music-themed aesthetic, photo gallery, and smooth animations.',
-      tags: ['HTML','CSS','JavaScript','Bootstrap'],
+      tags: ['HTML', 'CSS', 'JavaScript', 'Bootstrap'],
       link: 'https://immanuelmm.github.io/kirstin-regalado/'
     },
     {
       id: 'sp5',
       title: 'Personal Portfolio v1 (Student)',
       desc: 'My original portfolio website built as a student – a milestone project showcasing early web dev skills with HTML, CSS, and JavaScript.',
-      tags: ['HTML','CSS','JavaScript','Bootstrap'],
+      tags: ['HTML', 'CSS', 'JavaScript', 'Bootstrap'],
       link: 'https://immanuelmm.github.io/My-portfolio/'
     }
   ],
@@ -308,8 +316,8 @@ const DEFAULT_DATA = {
 
   // Certifications
   certifications: [
-    { id: 'cert1', name: 'Full Stack Web Development', issuer: 'Avion School', year: '2020', icon: '🎓' },
-    { id: 'cert2', name: 'TESDA NC II – Computer Programming', issuer: 'TESDA / Laverdad Christian College', year: '2013', icon: '📜' }
+    { id: 'cert1', name: 'Full Stack Web Development', issuer: 'Avion School', year: '2020', icon: '🎓', link: 'https://www.avionschool.com/' },
+    { id: 'cert2', name: 'TESDA NC II – Computer Programming', issuer: 'TESDA / Laverdad Christian College', year: '2013', icon: '📜', link: 'https://www.tesda.gov.ph/' }
   ]
 };
 
@@ -322,7 +330,7 @@ let editingItem = null; // { type, id }
 // ══════════════════════════════════════
 //  STORAGE HELPERS
 // ══════════════════════════════════════
-const DATA_VERSION = 'v10'; // bump this when defaults change significantly
+const DATA_VERSION = 'v11'; // bump this when defaults change significantly
 
 function loadData() {
   try {
@@ -378,12 +386,12 @@ function getData() {
 function applyVisibility() {
   const data = getData();
   const vis = data.moduleVisibility || {};
-  
+
   // Taggable sections (main sections & sidebar sections)
   document.querySelectorAll('.content-section, .sidebar-section').forEach(sec => {
     if (!sec.id) return;
     const isVisible = vis[sec.id] !== false;
-    
+
     if (isVisible) {
       sec.classList.remove('module-hidden');
     } else {
@@ -414,7 +422,7 @@ function initVisibilityToggles() {
     // Determine where to inject the toggle button
     let header = sec.querySelector('.section-header, .sidebar-heading-wrap');
     if (!header) return; // Ignore sections without headers that match our struct
-    
+
     // Create toggle if it doesn't exist
     if (!header.querySelector('.pdf-toggle-btn')) {
       const btn = document.createElement('button');
@@ -425,15 +433,15 @@ function initVisibilityToggles() {
         e.stopPropagation();
         const data = getData();
         const v = data.moduleVisibility || {};
-        
+
         // Toggle the boolean (default is true if undefined)
         const currentState = v[sec.id] !== false;
         v[sec.id] = !currentState;
-        
+
         data.moduleVisibility = v;
         saveData(data);
         applyVisibility();
-        
+
         const noun = sec.classList.contains('sidebar-section') ? 'Sidebar section' : 'Section';
         if (v[sec.id]) {
           showToast(`👁️ ${noun} will be included everywhere.`);
@@ -482,12 +490,12 @@ function dropSkill(ev, targetCatId) {
 
   const data = getData();
   const cats = data.skillCategories || [];
-  
+
   const sourceCat = cats.find(cat => cat.id === draggedSkill.catId);
   if (sourceCat) {
     sourceCat.skills = sourceCat.skills.filter(s => s !== draggedSkill.skillName);
   }
-  
+
   const destCat = cats.find(cat => cat.id === targetCatId);
   if (destCat && !destCat.skills.includes(draggedSkill.skillName)) {
     destCat.skills.push(draggedSkill.skillName);
@@ -495,7 +503,7 @@ function dropSkill(ev, targetCatId) {
 
   saveData(data);
   renderSkills(data.skillCategories);
-  applyEditMode(); 
+  applyEditMode();
   draggedSkill = null;
 }
 
@@ -574,7 +582,7 @@ function editSkillName(catId, oldName) {
 function renderSkills(categories) {
   const container = document.getElementById('skills-container');
   if (!container) return;
-  
+
   if (!categories || categories.length === 0) {
     categories = [{ id: 'cat-main', name: 'Main Skills Pool', skills: [] }];
   }
@@ -602,7 +610,7 @@ function renderSkills(categories) {
       ${isEditMode ? `<div class="add-skill-wrap"><input type="text" class="add-skill-input" placeholder="+ Add skill (Enter)" onkeydown="if(event.key==='Enter') { addSkill('${c.id}', this.value); this.value=''; }" /></div>` : ''}
     </div>
   `).join('');
-  
+
   if (isEditMode) {
     container.innerHTML += `<div class="add-cat-wrap"><button class="add-cat-btn" onclick="addSkillCategory()">+ Add Category</button></div>`;
   }
@@ -662,8 +670,8 @@ function renderExperience(items) {
       </div>
       <div class="timeline-company">${escHtml(item.company)}</div>
       ${item.bullets && item.bullets.length > 0
-        ? `<ul class="timeline-bullets">${item.bullets.map(b => `<li>${escHtml(b)}</li>`).join('')}</ul>`
-        : ''}
+      ? `<ul class="timeline-bullets">${item.bullets.map(b => `<li>${escHtml(b)}</li>`).join('')}</ul>`
+      : ''}
     </div>
   `).join('');
   // Show/hide edit buttons based on current mode
@@ -685,8 +693,8 @@ function renderEducation(items) {
       </div>
       <div class="timeline-company">${escHtml(item.company)}</div>
       ${item.bullets && item.bullets.length > 0
-        ? `<ul class="timeline-bullets">${item.bullets.map(b => `<li>${escHtml(b)}</li>`).join('')}</ul>`
-        : ''}
+      ? `<ul class="timeline-bullets">${item.bullets.map(b => `<li>${escHtml(b)}</li>`).join('')}</ul>`
+      : ''}
     </div>
   `).join('');
   applyEditMode();
@@ -761,6 +769,7 @@ function renderCertifications(items) {
         <div class="cert-name">${escHtml(item.name)}</div>
         <div class="cert-issuer">${escHtml(item.issuer)}</div>
         <div class="cert-year">${escHtml(item.year)}</div>
+        ${item.link ? `<a class="cert-verify-link" href="${escHtml(item.link)}" target="_blank" rel="noopener" title="View credential">🔗 Verify Credential ↗</a>` : ''}
       </div>
     </div>
   `).join('');
@@ -776,7 +785,7 @@ function renderTextFields(data) {
     }
   });
   // Social links href
-  ['link-github','link-linkedin','link-twitter'].forEach(k => {
+  ['link-github', 'link-linkedin', 'link-twitter'].forEach(k => {
     const el = document.getElementById(k);
     if (el && data[k]) el.href = data[k];
     const inp = document.getElementById('input-' + k);
@@ -791,6 +800,56 @@ function renderTextFields(data) {
 // ══════════════════════════════════════
 //  INITIAL RENDER
 // ══════════════════════════════════════
+function renderMelanieHeader() {
+  const header = document.getElementById('melanie-header');
+  if (!header) return;
+  const data = getData();
+
+  const name    = data['full-name'] || '';
+  const title   = data['job-title'] || '';
+  const phone   = data.phone || '';
+  const email   = (data.email || '').split('|')[0].split('·')[0].trim();
+  const liUrl   = data['link-linkedin'] || '';
+  const liLabel = liUrl.replace(/https?:\/\/(www\.)?linkedin\.com\/in\/?/, '').replace(/\/$/, '') || liUrl;
+  const usePhoto = data['use-profile-pic'] !== false;
+  const avatarEl = document.getElementById('avatar-img');
+  const photoSrc = avatarEl ? avatarEl.src : 'profile.JPG';
+  const aboutEl  = document.getElementById('about-text');
+  const about    = aboutEl ? aboutEl.textContent.trim() : (data['about-text'] || '');
+
+  const contacts = [
+    phone   ? `<span class="mh-ci"><span class="mh-ci-icon">☎</span>${phone}</span>` : '',
+    email   ? `<span class="mh-ci"><span class="mh-ci-icon">✉</span>${email}</span>` : '',
+    liLabel ? `<span class="mh-ci"><span class="mh-ci-icon mh-ci-li">in</span>${liLabel}</span>` : '',
+  ].filter(Boolean).join('');
+
+  // Build compact project pills for the PDF header (up to 4 projects)
+  const topProjects = (data.projects || []).slice(0, 4);
+  const projPills = topProjects.map(p =>
+    p.link
+      ? `<a class="mh-proj-pill" href="${escHtml(p.link)}">${escHtml(p.title.split('–')[0].split('-')[0].trim())}</a>`
+      : `<span class="mh-proj-pill">${escHtml(p.title.split('–')[0].split('-')[0].trim())}</span>`
+  ).join('<span class="mh-proj-dot">·</span>');
+
+  header.innerHTML = `
+    <div class="mh-bar">${contacts}</div>
+    <div class="mh-body">
+      <div class="mh-text">
+        <h1 class="mh-name">${name}</h1>
+        <p class="mh-title">${title}</p>
+        <p class="mh-about">${about}</p>
+        ${topProjects.length ? `
+        <div class="mh-projects">
+          <span class="mh-proj-label">KEY PROJECTS</span>
+          ${projPills}
+        </div>` : ''}
+      </div>
+      ${usePhoto && photoSrc ? `<div class="mh-slash-accent"></div><div class="mh-photo-panel"><img class="mh-photo" src="${photoSrc}" alt="" /></div>` : ''}
+    </div>
+    <div class="mh-sep"></div>
+  `;
+}
+
 function renderAll() {
   const data = getData();
   renderTextFields(data);
@@ -803,11 +862,12 @@ function renderAll() {
   renderCertifications(data.certifications || []);
   renderAISkillsSidebar(data.aiSkills || []);
   renderAISection(data.aiTools || []);
+  renderMelanieHeader();
 
   // Avatar
   const savedAvatar = localStorage.getItem('portfolio_avatar');
   const imgEL = document.getElementById('avatar-img');
-  
+
   if (data['use-profile-pic'] !== false) {
     imgEL.src = savedAvatar || 'profile.JPG';
   } else {
@@ -866,7 +926,7 @@ function collectAndSave() {
   });
 
   // Collect social URLs from inputs
-  ['link-github','link-linkedin','link-twitter'].forEach(k => {
+  ['link-github', 'link-linkedin', 'link-twitter'].forEach(k => {
     const inp = document.getElementById('input-' + k);
     if (inp) data[k] = inp.value.trim();
     const anchor = document.getElementById(k);
@@ -899,40 +959,44 @@ function collectAndSave() {
 
 const MODAL_SCHEMAS = {
   experience: [
-    { key: 'role',    label: 'Job Title / Role',  type: 'text' },
+    { key: 'role', label: 'Job Title / Role', type: 'text' },
     { key: 'company', label: 'Company & Location', type: 'text' },
-    { key: 'period',  label: 'Period',             type: 'text', placeholder: 'e.g. Jan 2020 – Present' },
+    { key: 'period', label: 'Period', type: 'text', placeholder: 'e.g. Jan 2020 – Present' },
     { key: 'bullets', label: 'Bullet Points (one per line)', type: 'textarea' }
   ],
   education: [
-    { key: 'role',    label: 'Degree / Course',  type: 'text' },
+    { key: 'role', label: 'Degree / Course', type: 'text' },
     { key: 'company', label: 'School / Institution', type: 'text' },
-    { key: 'period',  label: 'Year / Period',    type: 'text' },
+    { key: 'period', label: 'Year / Period', type: 'text' },
     { key: 'bullets', label: 'Additional Notes (one per line)', type: 'textarea' }
   ],
   projects: [
     { key: 'title', label: 'Project Title', type: 'text' },
-    { key: 'desc',  label: 'Description',   type: 'textarea' },
-    { key: 'tags',  label: 'Tags (comma-separated)', type: 'text', placeholder: 'Vue.js, Node.js' },
-    { key: 'link',  label: 'Project URL (optional)', type: 'text', placeholder: 'https://' }
+    { key: 'desc', label: 'Description', type: 'textarea' },
+    { key: 'tags', label: 'Tags (comma-separated)', type: 'text', placeholder: 'Vue.js, Node.js' },
+    { key: 'link', label: 'Project URL (optional)', type: 'text', placeholder: 'https://' },
+    { key: 'github', label: 'GitHub Repository URL (optional)', type: 'text', placeholder: 'https://github.com/...' }
   ],
   webSystems: [
     { key: 'title', label: 'Project Title', type: 'text' },
-    { key: 'desc',  label: 'Description',   type: 'textarea' },
-    { key: 'tags',  label: 'Tags (comma-separated)', type: 'text', placeholder: 'Vue.js, Node.js' },
-    { key: 'link',  label: 'Live URL (optional)', type: 'text', placeholder: 'https://' }
+    { key: 'desc', label: 'Description', type: 'textarea' },
+    { key: 'tags', label: 'Tags (comma-separated)', type: 'text', placeholder: 'Vue.js, Node.js' },
+    { key: 'link', label: 'Live URL (optional)', type: 'text', placeholder: 'https://' },
+    { key: 'github', label: 'GitHub Repository URL (optional)', type: 'text', placeholder: 'https://github.com/...' }
   ],
   staticProjects: [
     { key: 'title', label: 'Website Title', type: 'text' },
-    { key: 'desc',  label: 'Description',   type: 'textarea' },
-    { key: 'tags',  label: 'Tags (comma-separated)', type: 'text', placeholder: 'HTML, CSS, Bootstrap' },
-    { key: 'link',  label: 'Live URL (optional)', type: 'text', placeholder: 'https://' }
+    { key: 'desc', label: 'Description', type: 'textarea' },
+    { key: 'tags', label: 'Tags (comma-separated)', type: 'text', placeholder: 'HTML, CSS, Bootstrap' },
+    { key: 'link', label: 'Live URL (optional)', type: 'text', placeholder: 'https://' },
+    { key: 'github', label: 'GitHub Repository URL (optional)', type: 'text', placeholder: 'https://github.com/...' }
   ],
   certifications: [
-    { key: 'icon',   label: 'Icon (emoji)', type: 'text', placeholder: '🏆' },
-    { key: 'name',   label: 'Certification Name', type: 'text' },
+    { key: 'icon', label: 'Icon (emoji)', type: 'text', placeholder: '🏆' },
+    { key: 'name', label: 'Certification Name', type: 'text' },
     { key: 'issuer', label: 'Issuing Organization', type: 'text' },
-    { key: 'year',   label: 'Year', type: 'text', placeholder: '2024' }
+    { key: 'year', label: 'Year', type: 'text', placeholder: '2024' },
+    { key: 'link', label: 'Verify / Credential URL (optional)', type: 'text', placeholder: 'https://credential.net/...' }
   ]
 };
 
@@ -991,7 +1055,7 @@ function saveModalItem() {
   const items = data[type] || [];
 
   // Build new object
-  const newObj = { id: id || `${type.slice(0,3)}_${Date.now()}` };
+  const newObj = { id: id || `${type.slice(0, 3)}_${Date.now()}` };
   schema.forEach(field => {
     const el = document.getElementById('mf-' + field.key);
     if (!el) return;
@@ -1097,9 +1161,414 @@ function genId() {
 // ══════════════════════════════════════
 //  PDF / PRINT
 // ══════════════════════════════════════
+let selectedLayout = 'modern';
+
+function resetPdfModal() {
+  document.getElementById('pdf-step-layout').classList.remove('hidden');
+  document.getElementById('pdf-step-color').classList.add('hidden');
+  document.getElementById('pdf-modal-subtitle').textContent = 'Choose a layout for your CV';
+}
+
+function openPdfModal() {
+  document.getElementById('pdf-modal-overlay').classList.remove('hidden');
+  resetPdfModal();
+}
+
+function closePdfModal() {
+  document.getElementById('pdf-modal-overlay').classList.add('hidden');
+}
+
+const PDF_THEMES = ['modern', 'classic', 'clean-yellow', 'clean-blue', 'clean-green', 'clean-rose', 'clean-purple', 'clean-teal', 'melanie-yellow', 'melanie-blue', 'melanie-green', 'melanie-rose', 'melanie-purple', 'melanie-teal', 'melanie-dark-navy', 'melanie-dark-slate', 'melanie-dark-purple', 'melanie-classic', 'bold-yellow', 'bold-blue', 'bold-green', 'bold-rose', 'bold-purple', 'bold-teal'];
+
+function triggerPrintWithTheme(theme) {
+  // Clear themes and layouts
+  PDF_THEMES.forEach(t => document.body.classList.remove(`pdf-theme-${t}`));
+  document.body.classList.remove('pdf-layout-classic', 'pdf-layout-modern');
+
+  // Apply layout class
+  if (selectedLayout === 'classic') {
+    document.body.classList.add('pdf-layout-classic');
+  } else {
+    document.body.classList.add('pdf-layout-modern');
+  }
+
+  // Apply theme class
+  if (theme !== 'modern') document.body.classList.add(`pdf-theme-${theme}`);
+
+  // For Melanie themes: hide the two orphaned dividers that sit between hidden
+  // elements at the top of the sidebar (they create a blank gap before SKILLS)
+  const orphanedDividers = [];
+  if (theme.startsWith('melanie')) {
+    const pdfBtn = document.querySelector('.sidebar-pdf-btn');
+    const contactSection = document.getElementById('section-contact');
+    [pdfBtn, contactSection].forEach(el => {
+      if (el) {
+        const next = el.nextElementSibling;
+        if (next && next.classList.contains('sidebar-divider')) {
+          next.dataset.melanieHide = '1';
+          next.style.setProperty('display', 'none', 'important');
+          orphanedDividers.push(next);
+        }
+      }
+    });
+  }
+
+  closePdfModal();
+  const label = theme.replace('-', ' ').replace(/\b\w/g, c => c.toUpperCase());
+  showToast(`🖨️ Opening print dialog (${label})…`);
+  setTimeout(() => {
+    window.print();
+    setTimeout(() => {
+      // Clean up themes and layouts
+      PDF_THEMES.forEach(t => document.body.classList.remove(`pdf-theme-${t}`));
+      document.body.classList.remove('pdf-layout-classic', 'pdf-layout-modern');
+      orphanedDividers.forEach(el => {
+        el.style.removeProperty('display');
+        delete el.dataset.melanieHide;
+      });
+    }, 1500);
+  }, 400);
+}
+
 function triggerPrint() {
-  showToast('🖨️ Opening print dialog for PDF…');
-  setTimeout(() => window.print(), 400);
+  openPdfModal();
+}
+
+// ── AI One-Column Print ──
+function triggerAiColumnPrint() {
+  closePdfModal();
+  // Clear existing themes/layouts
+  PDF_THEMES.forEach(t => document.body.classList.remove(`pdf-theme-${t}`));
+  document.body.classList.remove('pdf-layout-classic', 'pdf-layout-modern');
+  document.body.classList.add('pdf-ai-column');
+
+  showToast('🤖 Generating AI-readable one-column CV…');
+  setTimeout(() => {
+    window.print();
+    setTimeout(() => {
+      document.body.classList.remove('pdf-ai-column');
+    }, 1500);
+  }, 400);
+}
+
+// ── Word Document Generation ──
+function generateWordDoc() {
+  closePdfModal();
+  showToast('📝 Generating Word document…');
+
+  const data = getData();
+
+  // Check if docx library is loaded
+  if (typeof docx === 'undefined') {
+    showToast('❌ Word library not loaded. Check your internet connection.');
+    return;
+  }
+
+  const {
+    Document, Packer, Paragraph, TextRun, HeadingLevel,
+    AlignmentType, BorderStyle, ShadingType, TableRow, TableCell,
+    Table, WidthType, VerticalAlign, convertInchesToTwip,
+    ExternalHyperlink
+  } = docx;
+
+  // Helper: clickable hyperlink run
+  function hyperlink(text, url) {
+    if (!url) return null;
+    return new ExternalHyperlink({
+      link: url,
+      children: [
+        new TextRun({
+          text,
+          style: 'Hyperlink',
+          size: 17,
+          font: 'Arial',
+          color: '2563EB',
+          underline: { type: 'single' }
+        })
+      ]
+    });
+  }
+
+  const ACCENT = '2563EB';
+  const DARK   = '111827';
+  const GRAY   = '6B7280';
+  const LINE   = 'E5E7EB';
+
+  function sectionHeading(text) {
+    return new Paragraph({
+      children: [
+        new TextRun({
+          text: text.toUpperCase(),
+          bold: true,
+          size: 22,
+          color: ACCENT,
+          font: 'Arial',
+        })
+      ],
+      border: {
+        bottom: { style: BorderStyle.SINGLE, size: 6, color: LINE }
+      },
+      spacing: { before: 240, after: 80 }
+    });
+  }
+
+  function subHeading(role, company, period) {
+    return [
+      new Paragraph({
+        children: [
+          new TextRun({ text: role, bold: true, size: 20, color: DARK, font: 'Arial' }),
+          new TextRun({ text: '  •  ', size: 20, color: GRAY, font: 'Arial' }),
+          new TextRun({ text: company, size: 20, color: GRAY, font: 'Arial' }),
+        ],
+        spacing: { before: 80, after: 20 }
+      }),
+      new Paragraph({
+        children: [
+          new TextRun({ text: period, size: 17, color: GRAY, italics: true, font: 'Arial' })
+        ],
+        spacing: { before: 0, after: 40 }
+      })
+    ];
+  }
+
+  function bullet(text) {
+    return new Paragraph({
+      children: [new TextRun({ text, size: 18, color: DARK, font: 'Arial' })],
+      bullet: { level: 0 },
+      spacing: { before: 20, after: 20 }
+    });
+  }
+
+  function tag(text) {
+    return new TextRun({ text: `[${text}] `, size: 16, color: GRAY, font: 'Arial' });
+  }
+
+  const children = [];
+
+  // ── Header ──
+  children.push(new Paragraph({
+    children: [new TextRun({
+      text: data['full-name'] || 'Full Name',
+      bold: true, size: 48, color: DARK, font: 'Arial'
+    })],
+    spacing: { before: 0, after: 40 }
+  }));
+  children.push(new Paragraph({
+    children: [new TextRun({
+      text: data['job-title'] || '',
+      size: 24, color: ACCENT, bold: true, font: 'Arial'
+    })],
+    spacing: { before: 0, after: 40 }
+  }));
+  const contactLine = [
+    data['email'], data['phone'], data['location'], data['website']
+  ].filter(Boolean).join('  |  ');
+  children.push(new Paragraph({
+    children: [new TextRun({ text: contactLine, size: 17, color: GRAY, font: 'Arial' })],
+    border: { bottom: { style: BorderStyle.SINGLE, size: 4, color: LINE } },
+    spacing: { before: 0, after: 200 }
+  }));
+
+  // ── About ──
+  if (data['about-text']) {
+    children.push(sectionHeading('About'));
+    children.push(new Paragraph({
+      children: [new TextRun({ text: data['about-text'], size: 18, color: DARK, font: 'Arial' })],
+      spacing: { before: 40, after: 120 }
+    }));
+  }
+
+  // ── Experience ──
+  if (data.experience && data.experience.length) {
+    children.push(sectionHeading('Work Experience'));
+    data.experience.forEach(exp => {
+      children.push(...subHeading(exp.role, exp.company, exp.period));
+      (exp.bullets || []).forEach(b => children.push(bullet(b)));
+      children.push(new Paragraph({ spacing: { before: 60 } }));
+    });
+  }
+
+  // ── Education ──
+  if (data.education && data.education.length) {
+    children.push(sectionHeading('Education'));
+    data.education.forEach(edu => {
+      children.push(...subHeading(edu.role, edu.company, edu.period));
+      (edu.bullets || []).forEach(b => children.push(bullet(b)));
+    });
+  }
+
+  // ── Skills ──
+  if (data.skillCategories && data.skillCategories.length) {
+    children.push(sectionHeading('Skills'));
+    data.skillCategories.forEach(cat => {
+      children.push(new Paragraph({
+        children: [
+          new TextRun({ text: cat.name + ':  ', bold: true, size: 18, color: DARK, font: 'Arial' }),
+          ...(cat.skills || []).map(s => tag(s))
+        ],
+        spacing: { before: 40, after: 40 }
+      }));
+    });
+  }
+
+  // ── AI & Automation (dedicated section) ──
+  const hasAiSkills = data.aiSkills && data.aiSkills.length;
+  const hasAiTools  = data.aiTools  && data.aiTools.length;
+  if (hasAiSkills || hasAiTools) {
+    children.push(sectionHeading('AI & Automation'));
+
+    // Skills tag line
+    if (hasAiSkills) {
+      children.push(new Paragraph({
+        children: [
+          new TextRun({ text: 'Skills:  ', bold: true, size: 18, color: DARK, font: 'Arial' }),
+          ...data.aiSkills.map(s => tag(s))
+        ],
+        spacing: { before: 40, after: 80 }
+      }));
+    }
+
+    // Detailed AI tool cards
+    if (hasAiTools) {
+      data.aiTools.forEach(tool => {
+        // Title + badge on one line
+        children.push(new Paragraph({
+          children: [
+            new TextRun({ text: tool.title, bold: true, size: 19, color: DARK, font: 'Arial' }),
+            new TextRun({ text: `  [${tool.badge || 'AI'}]`, size: 16, color: ACCENT, bold: true, font: 'Arial' }),
+          ],
+          spacing: { before: 80, after: 20 }
+        }));
+        // Description
+        if (tool.desc) {
+          children.push(new Paragraph({
+            children: [new TextRun({ text: tool.desc, size: 17, color: DARK, font: 'Arial' })],
+            spacing: { before: 0, after: 20 }
+          }));
+        }
+        // Tags
+        if (tool.tags && tool.tags.length) {
+          children.push(new Paragraph({
+            children: tool.tags.map(t => tag(t)),
+            spacing: { before: 0, after: 60 }
+          }));
+        }
+      });
+    }
+
+    // Spacer after section
+    children.push(new Paragraph({ spacing: { before: 40, after: 0 } }));
+  }
+
+  // ── Projects ──
+  if (data.projects && data.projects.length) {
+    children.push(sectionHeading('Projects'));
+    data.projects.forEach(p => {
+      // Title
+      children.push(new Paragraph({
+        children: [new TextRun({ text: p.title, bold: true, size: 19, color: DARK, font: 'Arial' })],
+        spacing: { before: 80, after: 20 }
+      }));
+      // Description
+      if (p.desc) {
+        children.push(new Paragraph({
+          children: [new TextRun({ text: p.desc, size: 17, color: DARK, font: 'Arial' })],
+          spacing: { before: 0, after: 16 }
+        }));
+      }
+      // Tags
+      if (p.tags && p.tags.length) {
+        children.push(new Paragraph({
+          children: p.tags.map(t => tag(t)),
+          spacing: { before: 0, after: 16 }
+        }));
+      }
+      // Links row: live site + github
+      const linkChildren = [];
+      if (p.link) {
+        linkChildren.push(
+          new TextRun({ text: '🔗 Live: ', bold: true, size: 17, font: 'Arial', color: DARK }),
+          hyperlink(p.link, p.link),
+        );
+      }
+      if (p.github) {
+        if (linkChildren.length) linkChildren.push(new TextRun({ text: '   ', size: 17, font: 'Arial' }));
+        linkChildren.push(
+          new TextRun({ text: '🐙 GitHub: ', bold: true, size: 17, font: 'Arial', color: DARK }),
+          hyperlink(p.github, p.github),
+        );
+      }
+      if (linkChildren.length) {
+        children.push(new Paragraph({ children: linkChildren, spacing: { before: 0, after: 60 } }));
+      } else {
+        children.push(new Paragraph({ spacing: { before: 0, after: 60 } }));
+      }
+    });
+  }
+
+  // ── Certifications ──
+  if (data.certifications && data.certifications.length) {
+    children.push(sectionHeading('Certifications'));
+    data.certifications.forEach(c => {
+      // Name + issuer + year
+      children.push(new Paragraph({
+        children: [
+          new TextRun({ text: c.name, bold: true, size: 18, color: DARK, font: 'Arial' }),
+          new TextRun({ text: `  –  ${c.issuer}  (${c.year})`, size: 17, color: GRAY, font: 'Arial' })
+        ],
+        spacing: { before: 40, after: 10 }
+      }));
+      // Verification link (if any)
+      if (c.link) {
+        children.push(new Paragraph({
+          children: [
+            new TextRun({ text: '🔗 Verify: ', bold: true, size: 16, font: 'Arial', color: DARK }),
+            hyperlink(c.link, c.link)
+          ],
+          spacing: { before: 0, after: 40 }
+        }));
+      }
+    });
+  }
+
+  // ── Languages ──
+  if (data.languages && data.languages.length) {
+    children.push(sectionHeading('Languages'));
+    data.languages.forEach(l => {
+      children.push(new Paragraph({
+        children: [
+          new TextRun({ text: l.name, bold: true, size: 18, color: DARK, font: 'Arial' }),
+          new TextRun({ text: `  –  ${l.level}`, size: 17, color: GRAY, font: 'Arial' })
+        ],
+        spacing: { before: 40, after: 40 }
+      }));
+    });
+  }
+
+  const doc = new Document({
+    sections: [{
+      properties: {
+        page: {
+          margin: {
+            top: convertInchesToTwip(0.75),
+            bottom: convertInchesToTwip(0.75),
+            left: convertInchesToTwip(0.9),
+            right: convertInchesToTwip(0.9),
+          }
+        }
+      },
+      children
+    }]
+  });
+
+  Packer.toBlob(doc).then(blob => {
+    const name = (data['full-name'] || 'CV').replace(/\s+/g, '_');
+    saveAs(blob, `${name}_CV.docx`);
+    showToast('✅ Word document downloaded!');
+  }).catch(err => {
+    console.error('Word generation error:', err);
+    showToast('❌ Word generation failed. Check console.');
+  });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -1146,6 +1615,55 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('pdf-fab').addEventListener('click', triggerPrint);
   document.getElementById('sidebar-pdf-btn').addEventListener('click', triggerPrint);
   document.getElementById('mobile-pdf-btn').addEventListener('click', triggerPrint);
+
+  // ── PDF Modal ──
+  document.getElementById('pdf-modal-close').addEventListener('click', closePdfModal);
+  document.getElementById('pdf-modal-overlay').addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) closePdfModal();
+  });
+  // ── PDF Layout selection buttons ──
+  document.querySelectorAll('.pdf-layout-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      selectedLayout = btn.dataset.layout;
+      
+      // Update default layout theme option card
+      const defaultBtn = document.getElementById('pdf-default-theme-btn');
+      const defaultSwatch = document.getElementById('pdf-default-theme-swatch');
+      const defaultName = document.getElementById('pdf-default-theme-name');
+      const defaultDesc = document.getElementById('pdf-default-theme-desc');
+      
+      if (selectedLayout === 'classic') {
+        defaultBtn.dataset.theme = 'classic';
+        defaultSwatch.className = 'pdf-theme-swatch pdf-theme-swatch--classic';
+        defaultName.textContent = 'Classic';
+        defaultDesc.textContent = 'Dark slate · Green accents';
+      } else {
+        defaultBtn.dataset.theme = 'modern';
+        defaultSwatch.className = 'pdf-theme-swatch pdf-theme-swatch--modern';
+        defaultName.textContent = 'Modern';
+        defaultDesc.textContent = 'Dark purple sidebar';
+      }
+
+      // Switch step view
+      document.getElementById('pdf-step-layout').classList.add('hidden');
+      document.getElementById('pdf-step-color').classList.remove('hidden');
+      document.getElementById('pdf-modal-subtitle').textContent = `Customize your ${selectedLayout === 'classic' ? 'Classic' : 'Modern'} CV color`;
+    });
+  });
+
+  // ── PDF Back button click ──
+  document.getElementById('pdf-back-btn').addEventListener('click', resetPdfModal);
+
+  // ── PDF Color/Theme selection buttons ──
+  document.querySelectorAll('.pdf-modal [data-theme]').forEach(btn => {
+    btn.addEventListener('click', () => triggerPrintWithTheme(btn.dataset.theme));
+  });
+
+  // ── Word Doc button ──
+  document.getElementById('pdf-word-btn').addEventListener('click', generateWordDoc);
+
+  // ── AI One-Column PDF button ──
+  document.getElementById('pdf-ai-btn').addEventListener('click', triggerAiColumnPrint);
 
   // ── Edit trigger ──
   document.getElementById('edit-trigger').addEventListener('click', openLoginModal);
@@ -1214,7 +1732,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const data = getData();
     data['use-profile-pic'] = !(data['use-profile-pic'] !== false);
     saveData(data);
-    
+
     // update instantly
     const savedAvatar = localStorage.getItem('portfolio_avatar');
     const imgEL = document.getElementById('avatar-img');
@@ -1284,10 +1802,10 @@ document.addEventListener('DOMContentLoaded', () => {
   async function handleSendChat() {
     const text = chatInput.value.trim();
     if (!text) return;
-    
+
     addMessage(text, 'user');
     chatInput.value = '';
-    
+
     showTypingIndicator();
 
     // ── NOTE: To use the real OpenAI API, replace the mock logic below with a fetch request ──
@@ -1320,7 +1838,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       removeTypingIndicator();
       let response = "I'm a demo AI assistant! Immanuel is a Software Engineer experienced in Vue.js, PIXI.js, and AI automation. Would you like to know about his projects or work experience?";
-      
+
       const lower = text.toLowerCase();
       if (lower.includes('project')) {
         response = "Immanuel has worked on several amazing projects like the LoanPro Management System, MCGI Hub, and various E-Commerce sites. You can find them in the Projects section!";
