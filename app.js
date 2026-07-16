@@ -316,8 +316,9 @@ const DEFAULT_DATA = {
 
   // Certifications
   certifications: [
-    { id: 'cert1', name: 'Full Stack Web Development', issuer: 'Avion School', year: '2020', icon: '🎓', link: 'https://www.avionschool.com/' },
-    { id: 'cert2', name: 'TESDA NC II – Computer Programming', issuer: 'TESDA / Laverdad Christian College', year: '2013', icon: '📜', link: 'https://www.tesda.gov.ph/' }
+    { id: 'cert1', name: 'Full Stack Web Development', issuer: 'Avion School', year: '2020', icon: '🎓', link: 'https://drive.google.com/file/d/1YAnigl0a8gSOq0rx-UF0_Gbq9ndD2Yth/view' },
+    { id: 'cert2', name: 'TESDA NC II – Computer Programming', issuer: 'TESDA / Laverdad Christian College', year: '2013', icon: '📜', link: 'https://www.tesda.gov.ph/' },
+    { id: 'cert3', name: 'AI Exploration Initiative Program', issuer: 'Quickstrike Innovation Phil.', year: '2026', icon: '🤖', link: 'https://drive.google.com/file/d/1IcQRq8SBXsoDfPg0839N0HB1kxlQA3wD/view' }
   ]
 };
 
@@ -330,45 +331,80 @@ let editingItem = null; // { type, id }
 // ══════════════════════════════════════
 //  STORAGE HELPERS
 // ══════════════════════════════════════
+let externalData = null;
+
+async function loadExternalData() {
+  try {
+    const res = await fetch('portfolio_data.json');
+    if (res.ok) {
+      externalData = await res.json();
+      console.log('Successfully loaded external portfolio_data.json');
+    }
+  } catch (e) {
+    console.log('No external portfolio_data.json found, using defaults.');
+  }
+}
+
 const DATA_VERSION = 'v11'; // bump this when defaults change significantly
 
 function loadData() {
+  const baseData = externalData || DEFAULT_DATA;
   try {
     const savedVersion = localStorage.getItem('portfolio_version');
     const saved = localStorage.getItem('portfolio_data');
-    // If version mismatch or no save, use defaults (preserves user edits only on same version)
+    // If version mismatch or no save, use baseData (preserves user edits only on same version)
     if (savedVersion !== DATA_VERSION || !saved) {
-      return { ...DEFAULT_DATA };
+      return { ...baseData };
     }
     const parsed = JSON.parse(saved);
 
     // Migration from old skills array to skillCategories
-    let finalCategories = parsed.skillCategories || DEFAULT_DATA.skillCategories;
+    let finalCategories = parsed.skillCategories || baseData.skillCategories;
     if (!parsed.skillCategories && parsed.skills && parsed.skills.length > 0) {
       finalCategories = [
-        ...DEFAULT_DATA.skillCategories.filter(c => c.id !== 'cat-main'),
+        ...baseData.skillCategories.filter(c => c.id !== 'cat-main'),
         { id: 'cat-main', name: 'Main Skills Pool', skills: parsed.skills }
       ];
     }
 
+    let finalCerts = (parsed.certifications && parsed.certifications.length > 0) ? parsed.certifications : baseData.certifications;
+    finalCerts = finalCerts.map(c => {
+      if (c.id === 'cert1' && (c.link === 'https://www.avionschool.com/' || !c.link)) {
+        return { ...c, link: 'https://drive.google.com/file/d/1YAnigl0a8gSOq0rx-UF0_Gbq9ndD2Yth/view' };
+      }
+      return c;
+    });
+
+    // Ensure the new cert3 (AI Exploration Initiative Program) is included in saved sessions
+    if (!finalCerts.some(c => c.id === 'cert3')) {
+      finalCerts.push({
+        id: 'cert3',
+        name: 'AI Exploration Initiative Program',
+        issuer: 'Quickstrike Innovation Phil.',
+        year: '2026',
+        icon: '🤖',
+        link: 'https://drive.google.com/file/d/1IcQRq8SBXsoDfPg0839N0HB1kxlQA3wD/view'
+      });
+    }
+
     // Merge: use saved scalar fields but keep default arrays if saved arrays are empty/missing
     return {
-      ...DEFAULT_DATA,
+      ...baseData,
       ...parsed,
-      projects: (parsed.projects && parsed.projects.length > 0) ? parsed.projects : DEFAULT_DATA.projects,
-      webSystems: (parsed.webSystems && parsed.webSystems.length > 0) ? parsed.webSystems : DEFAULT_DATA.webSystems,
-      staticProjects: (parsed.staticProjects && parsed.staticProjects.length > 0) ? parsed.staticProjects : DEFAULT_DATA.staticProjects,
-      experience: (parsed.experience && parsed.experience.length > 0) ? parsed.experience : DEFAULT_DATA.experience,
-      education: (parsed.education && parsed.education.length > 0) ? parsed.education : DEFAULT_DATA.education,
-      certifications: (parsed.certifications && parsed.certifications.length > 0) ? parsed.certifications : DEFAULT_DATA.certifications,
+      projects: (parsed.projects && parsed.projects.length > 0) ? parsed.projects : baseData.projects,
+      webSystems: (parsed.webSystems && parsed.webSystems.length > 0) ? parsed.webSystems : baseData.webSystems,
+      staticProjects: (parsed.staticProjects && parsed.staticProjects.length > 0) ? parsed.staticProjects : baseData.staticProjects,
+      experience: (parsed.experience && parsed.experience.length > 0) ? parsed.experience : baseData.experience,
+      education: (parsed.education && parsed.education.length > 0) ? parsed.education : baseData.education,
+      certifications: finalCerts,
       skillCategories: finalCategories,
-      languages: (parsed.languages && parsed.languages.length > 0) ? parsed.languages : DEFAULT_DATA.languages,
+      languages: (parsed.languages && parsed.languages.length > 0) ? parsed.languages : baseData.languages,
       moduleVisibility: parsed.moduleVisibility || {},
       // Always use defaults for AI (managed by code)
-      aiSkills: DEFAULT_DATA.aiSkills,
-      aiTools: DEFAULT_DATA.aiTools,
+      aiSkills: baseData.aiSkills,
+      aiTools: baseData.aiTools,
     };
-  } catch { return { ...DEFAULT_DATA }; }
+  } catch { return { ...baseData }; }
 }
 
 function saveData(data) {
@@ -378,6 +414,37 @@ function saveData(data) {
 
 function getData() {
   return loadData();
+}
+
+function exportData() {
+  const data = getData();
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  saveAs(blob, 'portfolio_data.json');
+  showToast('📤 portfolio_data.json exported! Save it to your project folder before deploying.');
+}
+
+function importData(file) {
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      const data = JSON.parse(e.target.result);
+      if (typeof data !== 'object' || data === null) {
+        throw new Error('Invalid JSON format.');
+      }
+      // Save data
+      saveData(data);
+      if (data.avatarDataUrl) {
+        localStorage.setItem('portfolio_avatar', data.avatarDataUrl);
+      }
+      showToast('📥 Data imported successfully! Reloading...');
+      setTimeout(() => location.reload(), 1500);
+    } catch (err) {
+      console.error(err);
+      showToast('❌ Failed to import: Invalid JSON file.');
+    }
+  };
+  reader.readAsText(file);
 }
 
 // ══════════════════════════════════════
@@ -643,16 +710,20 @@ function renderAISection(tools) {
     grid.innerHTML = '<p style="color:var(--text-muted);font-size:0.85rem;">No AI tools added yet.</p>';
     return;
   }
-  grid.innerHTML = tools.map(item => `
-    <div class="ai-card">
-      <span class="ai-badge">${escHtml(item.badge || 'AI')}</span>
-      <span class="ai-card-icon">${item.icon || '🤖'}</span>
-      <div class="ai-card-title">${escHtml(item.title)}</div>
-      <div class="ai-card-desc">${escHtml(item.desc)}</div>
-      <div class="ai-card-tags">${(item.tags || []).map(t => `<span class="ai-card-tag">${escHtml(t)}</span>`).join('')}</div>
-      ${item.link ? `<a class="ai-card-link" href="${escHtml(item.link)}" target="_blank" rel="noopener">🔗 View Workflow ↗</a>` : ''}
-    </div>
-  `).join('');
+  grid.innerHTML = tools.map(item => {
+    const isDrive = item.link && item.link.includes('drive.google.com');
+    const linkText = isDrive ? '🔗 View Certificate ↗' : '🔗 View Workflow ↗';
+    return `
+      <div class="ai-card">
+        <span class="ai-badge">${escHtml(item.badge || 'AI')}</span>
+        <span class="ai-card-icon">${item.icon || '🤖'}</span>
+        <div class="ai-card-title">${escHtml(item.title)}</div>
+        <div class="ai-card-desc">${escHtml(item.desc)}</div>
+        <div class="ai-card-tags">${(item.tags || []).map(t => `<span class="ai-card-tag">${escHtml(t)}</span>`).join('')}</div>
+        ${item.link ? `<a class="ai-card-link" href="${escHtml(item.link)}" target="_blank" rel="noopener">${linkText}</a>` : ''}
+      </div>
+    `;
+  }).join('');
 }
 
 function renderExperience(items) {
@@ -865,7 +936,7 @@ function renderAll() {
   renderMelanieHeader();
 
   // Avatar
-  const savedAvatar = localStorage.getItem('portfolio_avatar');
+  const savedAvatar = localStorage.getItem('portfolio_avatar') || data.avatarDataUrl;
   const imgEL = document.getElementById('avatar-img');
 
   if (data['use-profile-pic'] !== false) {
@@ -948,6 +1019,12 @@ function collectAndSave() {
   // Update footer & page title
   document.getElementById('footer-name').textContent = data['full-name'] || '';
   document.getElementById('page-title').textContent = `Portfolio – ${data['full-name'] || ''}`;
+
+  // Include avatar base64 data URL if it exists in localStorage
+  const savedAvatar = localStorage.getItem('portfolio_avatar');
+  if (savedAvatar) {
+    data.avatarDataUrl = savedAvatar;
+  }
 
   saveData(data);
   showToast('✅ Changes saved successfully!');
@@ -1571,7 +1648,8 @@ function generateWordDoc() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  await loadExternalData();
   renderAll();
 
   // ── Mobile sidebar toggle ──
@@ -1691,6 +1769,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ── Save / Logout ──
   document.getElementById('save-btn').addEventListener('click', collectAndSave);
+  
+  const exportJsonBtn = document.getElementById('export-json-btn');
+  if (exportJsonBtn) {
+    exportJsonBtn.addEventListener('click', exportData);
+  }
+
+  const importBtn = document.getElementById('import-json-btn');
+  const importInput = document.getElementById('import-json-input');
+  if (importBtn && importInput) {
+    importBtn.addEventListener('click', () => importInput.click());
+    importInput.addEventListener('change', e => {
+      const file = e.target.files[0];
+      if (file) {
+        importData(file);
+      }
+      e.target.value = '';
+    });
+  }
+
   document.getElementById('logout-btn').addEventListener('click', () => {
     collectAndSave();
     exitEditMode();
@@ -1734,7 +1831,7 @@ document.addEventListener('DOMContentLoaded', () => {
     saveData(data);
 
     // update instantly
-    const savedAvatar = localStorage.getItem('portfolio_avatar');
+    const savedAvatar = localStorage.getItem('portfolio_avatar') || data.avatarDataUrl;
     const imgEL = document.getElementById('avatar-img');
     if (data['use-profile-pic']) {
       imgEL.src = savedAvatar || 'profile.JPG';
