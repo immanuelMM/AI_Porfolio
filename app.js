@@ -283,24 +283,58 @@ const DEFAULT_DATA = {
     'Agentic Coding', 'REST AI APIs'
   ],
 
-  // AI Tools / Highlight Cards
+  // AI Tools / Highlight Cards (featured items render as wide cards, listed first)
   aiTools: [
+    {
+      id: 'ai4',
+      icon: '🧩',
+      title: 'Master BRD – Requirements Audit Agent Team',
+      badge: 'Live',
+      featured: true,
+      desc: 'A multi-agent AI system that verifies whether every requirement in a Business Requirements Document is actually implemented in the codebase — so teams sign off on evidence, not assumptions.',
+      highlights: [
+        'Audits BRDs against source code and keeps only proven requirements',
+        'Interactive 3D knowledge graph to explore requirements and coverage',
+        'Self-service request portal that runs AI analysis and emails results to stakeholders',
+        'Guardrails and reusable skills built on Claude Code hooks (/brd-audit, /brd-analyze)'
+      ],
+      tags: ['Claude Code', 'Multi-Agent', 'Node.js', 'JavaScript', 'EmailJS'],
+      link: 'https://master-brd.onrender.com/flow.html',
+      git: 'https://github.com/immanuelMM/Master_BRD'
+    },
+    {
+      id: 'ai5',
+      icon: '📋',
+      title: 'Business Analyzt Reviewer – BRD Agent Team',
+      badge: 'Live',
+      featured: true,
+      desc: 'An AI agent team that turns raw Confluence requirement pages into a client-ready Business Requirements Document — reducing the back-and-forth between analysts and requirement owners.',
+      highlights: [
+        'Four specialised agents: Summarizer, Consolidator, Prototype Answerer and BRD Formatter',
+        'Generates prioritised clarification questions and answers them against a clickable prototype',
+        'Human-in-the-loop verification with Atlassian Rovo before questions reach owners',
+        'Exports a polished, ready-to-share BRD in PDF and Word'
+      ],
+      tags: ['Claude Code', 'Multi-Agent', 'Confluence', 'Jira', 'Rovo'],
+      link: 'https://business-analyzt-reviewer.onrender.com/docs/index.html',
+      git: 'https://github.com/immanuelMM/Business-Analyzt-Reviewer'
+    },
     {
       id: 'ai1',
       icon: '⚡',
       title: 'n8n Workflow Automation',
       badge: 'Live',
-      desc: 'Built automated workflows using n8n to orchestrate multi-step processes, API integrations, and data pipelines — reducing manual effort and enabling AI-driven task automation.',
+      desc: 'Automated workflows that orchestrate multi-step processes, API integrations and data pipelines — replacing repetitive manual work with reliable, AI-assisted automation.',
       tags: ['n8n', 'Workflow Automation', 'REST API', 'JSON', 'Webhooks'],
       link: 'https://n8n-immanuel.onrender.com/workflow/KQtNoYGqnGs19BWA/executions/2'
     },
     {
       id: 'ai2',
       icon: '🤖',
-      title: 'Antigravity AI – Agentic Coding',
-      badge: 'Active',
-      desc: 'Leverages Google DeepMind\'s Antigravity AI assistant for agentic pair programming — using AI to plan, scaffold, debug, and ship full-stack features with intelligent code generation.',
-      tags: ['Antigravity AI', 'Google DeepMind', 'Agentic Coding', 'AI Pair Programming'],
+      title: 'Agentic Coding',
+      badge: 'Daily Use',
+      desc: 'Uses AI coding agents (Claude Code, Google Antigravity) to plan, scaffold, debug and ship full-stack features faster — with human review on every change.',
+      tags: ['Claude Code', 'Antigravity AI', 'Agentic Coding', 'AI Pair Programming'],
       link: ''
     },
     {
@@ -308,8 +342,8 @@ const DEFAULT_DATA = {
       icon: '🧠',
       title: 'Prompt Engineering & LLM Integration',
       badge: 'Skill',
-      desc: 'Designs structured prompts for LLMs (Large Language Models), integrates AI APIs into web applications, and builds intelligent automation pipelines using modern AI tools.',
-      tags: ['Prompt Engineering', 'LLM', 'AI APIs', 'OpenAI', 'Automation'],
+      desc: 'Designs structured prompts and integrates LLM APIs into web applications to add summarisation, analysis and intelligent automation to real products.',
+      tags: ['Prompt Engineering', 'LLM', 'AI APIs', 'Claude', 'OpenAI'],
       link: ''
     }
   ],
@@ -712,15 +746,22 @@ function renderAISection(tools) {
   }
   grid.innerHTML = tools.map(item => {
     const isDrive = item.link && item.link.includes('drive.google.com');
-    const linkText = isDrive ? '🔗 View Certificate ↗' : '🔗 View Workflow ↗';
+    const linkText = isDrive ? 'View Certificate ↗' : item.git ? 'Live Demo ↗' : 'View Workflow ↗';
     return `
-      <div class="ai-card">
+      <div class="ai-card${item.featured ? ' ai-card--featured' : ''}">
         <span class="ai-badge">${escHtml(item.badge || 'AI')}</span>
         <span class="ai-card-icon">${item.icon || '🤖'}</span>
+        ${item.featured ? '<div class="ai-card-eyebrow">Featured Project</div>' : ''}
         <div class="ai-card-title">${escHtml(item.title)}</div>
         <div class="ai-card-desc">${escHtml(item.desc)}</div>
+        ${item.highlights && item.highlights.length
+        ? `<ul class="ai-card-highlights">${item.highlights.map(h => `<li>${escHtml(h)}</li>`).join('')}</ul>`
+        : ''}
         <div class="ai-card-tags">${(item.tags || []).map(t => `<span class="ai-card-tag">${escHtml(t)}</span>`).join('')}</div>
-        ${item.link ? `<a class="ai-card-link" href="${escHtml(item.link)}" target="_blank" rel="noopener">${linkText}</a>` : ''}
+        ${item.link || item.git ? `<div class="ai-card-links">
+          ${item.link ? `<a class="ai-card-link ai-card-link--primary" href="${escHtml(item.link)}" target="_blank" rel="noopener">${linkText}</a>` : ''}
+          ${item.git ? `<a class="ai-card-link" href="${escHtml(item.git)}" target="_blank" rel="noopener">View Code on GitHub ↗</a>` : ''}
+        </div>` : ''}
       </div>
     `;
   }).join('');

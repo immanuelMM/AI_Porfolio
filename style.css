@@ -1941,19 +1941,97 @@ body.edit-active [contenteditable="true"]:focus {
     color: #c4b5fd;
 }
 
+.ai-card-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
 .ai-card-link {
     font-size: 0.78rem;
-    color: #a78bfa;
+    color: #c4b5fd;
     text-decoration: none;
     font-weight: 600;
     display: inline-flex;
     align-items: center;
     gap: 5px;
+    padding: 7px 14px;
+    border: 1px solid rgba(167, 139, 250, 0.45);
+    border-radius: 8px;
     transition: var(--transition);
 }
 
 .ai-card-link:hover {
-    color: #ec4899;
+    color: #fff;
+    border-color: #ec4899;
+}
+
+.ai-card-link--primary {
+    color: #fff;
+    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+    border-color: transparent;
+}
+
+.ai-card-link--primary:hover {
+    box-shadow: 0 6px 20px rgba(236, 72, 153, 0.35);
+    transform: translateY(-1px);
+}
+
+.ai-lead {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin: -4px 0 18px;
+    max-width: 720px;
+}
+
+.ai-card--featured {
+    grid-column: 1 / -1;
+    padding: 26px 28px 22px;
+    border-color: rgba(167, 139, 250, 0.45);
+}
+
+.ai-card--featured .ai-card-title {
+    font-size: 1.2rem;
+}
+
+.ai-card--featured .ai-card-desc {
+    font-size: 0.9rem;
+    max-width: 760px;
+}
+
+.ai-card-eyebrow {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #a78bfa;
+    margin-bottom: 4px;
+}
+
+.ai-card-highlights {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 14px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+    gap: 6px 20px;
+}
+
+.ai-card-highlights li {
+    position: relative;
+    padding-left: 20px;
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.ai-card-highlights li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #a78bfa;
+    font-weight: 700;
 }
 
 .ai-badge {
@@ -2743,6 +2821,24 @@ body.edit-active [contenteditable="true"]:focus {
         padding: 1pt 5pt !important;
         top: 8pt !important;
         right: 8pt !important;
+    }
+
+    .ai-lead,
+    .ai-card-highlights li {
+        color: #4b5563 !important;
+        font-size: 7pt !important;
+    }
+
+    .ai-card--featured .ai-card-title {
+        font-size: 9pt !important;
+    }
+
+    .ai-card-link {
+        font-size: 6.5pt !important;
+        padding: 0 !important;
+        border: none !important;
+        background: none !important;
+        color: #7c3aed !important;
     }
 
     /* Remove hover transforms */
