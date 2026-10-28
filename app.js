@@ -303,6 +303,7 @@ const DEFAULT_DATA = {
   aiTools: [
     {
       id: 'ai6',
+      image: 'images/ai/fullstack-agent.svg',
       icon: '⚡',
       title: 'Full Stack AI Agent – Multi-Agent Software Team',
       badge: 'Live',
@@ -320,6 +321,7 @@ const DEFAULT_DATA = {
     },
     {
       id: 'ai4',
+      image: 'images/ai/master-brd.svg',
       icon: '🧩',
       title: 'Master BRD – Requirements Audit Agent Team',
       badge: 'Live',
@@ -337,6 +339,7 @@ const DEFAULT_DATA = {
     },
     {
       id: 'ai5',
+      image: 'images/ai/ba-reviewer.svg',
       icon: '📋',
       title: 'Business Analyzt Reviewer – BRD Agent Team',
       badge: 'Live',
@@ -354,6 +357,7 @@ const DEFAULT_DATA = {
     },
     {
       id: 'ai1',
+      image: 'images/ai/n8n-workflow.svg',
       icon: '⚡',
       title: 'n8n Workflow Automation',
       badge: 'Live',
@@ -363,6 +367,7 @@ const DEFAULT_DATA = {
     },
     {
       id: 'ai2',
+      image: 'images/ai/agentic-coding.svg',
       icon: '🤖',
       title: 'Agentic Coding',
       badge: 'Daily Use',
@@ -372,6 +377,7 @@ const DEFAULT_DATA = {
     },
     {
       id: 'ai3',
+      image: 'images/ai/prompt-engineering.svg',
       icon: '🧠',
       title: 'Prompt Engineering & LLM Integration',
       badge: 'Skill',
@@ -794,6 +800,7 @@ function renderAISection(tools) {
     return `
       <div class="ai-card${item.featured ? ' ai-card--featured' : ''}">
         <span class="ai-badge">${escHtml(item.badge || 'AI')}</span>
+        ${item.image ? `<img class="ai-card-image" src="${escHtml(item.image)}" alt="${escHtml(item.title)} illustration" loading="lazy">` : ''}
         <span class="ai-card-icon">${item.icon || '🤖'}</span>
         ${item.featured ? '<div class="ai-card-eyebrow">Featured Project</div>' : ''}
         <div class="ai-card-title">${escHtml(item.title)}</div>

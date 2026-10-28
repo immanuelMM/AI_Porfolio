@@ -2049,6 +2049,32 @@ body.edit-active [contenteditable="true"]:focus {
     letter-spacing: 1px;
 }
 
+.ai-card-image {
+    display: block;
+    width: calc(100% + 44px);
+    aspect-ratio: 8 / 3;
+    margin: -22px -22px 16px;
+    object-fit: cover;
+    border-bottom: 1px solid rgba(167, 139, 250, 0.25);
+    transition: var(--transition);
+}
+
+.ai-card:hover .ai-card-image {
+    filter: brightness(1.12) saturate(1.1);
+}
+
+.ai-card--featured .ai-card-image {
+    width: calc(100% + 56px);
+    aspect-ratio: auto;
+    height: 260px;
+    margin: -26px -28px 18px;
+}
+
+.ai-badge {
+    z-index: 1;
+    backdrop-filter: blur(6px);
+}
+
 /* ========================================================================= */
 /* MODULE VISIBILITY TOGGLE */
 /* ========================================================================= */
@@ -2747,6 +2773,7 @@ body.edit-active [contenteditable="true"]:focus {
 
     /* ── AI Section ── */
     .ai-divider,
+    .ai-card-image,
     .ai-card::before,
     .ai-pulse {
         display: none !important;
