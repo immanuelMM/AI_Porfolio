@@ -140,6 +140,14 @@ const DEFAULT_DATA = {
   // Projects
   projects: [
     {
+      id: 'proj_agent',
+      title: 'Full Stack AI Agent – Multi-Agent Software Team',
+      desc: 'An autonomous multi-agent software engineering team of seven specialised Claude Code agents operating with a unified workflow, shared coding standards, and automatic quality gates. Features an interactive Agent Studio live collaboration animation, automated OpenAPI contracts, and full CI/CD deployment.',
+      tags: ['Claude Code', 'Multi-Agent', 'Agent Studio', 'ASP.NET Core', 'React', 'TypeScript', 'Docker'],
+      link: 'https://full-stack-ai-agent-vybc.onrender.com/portfolio',
+      github: 'https://github.com/immanuelMM/Full-Stack-AI-Agent'
+    },
+    {
       id: 'proj1',
       title: 'LoanPro – Loan Management System',
       desc: 'A full-featured loan management web app with borrower tracking, loan lifecycle management, amortization schedules, payment recording, PDF receipts, and a KPI dashboard. Built with vanilla JS and a Node.js backend.',
@@ -207,6 +215,14 @@ const DEFAULT_DATA = {
 
   // Web System Projects
   webSystems: [
+    {
+      id: 'ws_agent',
+      title: 'Full Stack AI Agent – Multi-Agent Software Team',
+      desc: 'Multi-agent software engineering system with seven specialized AI agents, real-time Agent Studio live collaboration animation, and automated end-to-end full stack development pipelines.',
+      tags: ['Claude Code', 'Multi-Agent', 'React', 'ASP.NET Core', 'TypeScript', 'Docker'],
+      link: 'https://full-stack-ai-agent-vybc.onrender.com/portfolio',
+      github: 'https://github.com/immanuelMM/Full-Stack-AI-Agent'
+    },
     {
       id: 'ws1',
       title: 'LoanPro – Loan Management System',
@@ -278,13 +294,30 @@ const DEFAULT_DATA = {
 
   // AI Skills (shown separately in sidebar)
   aiSkills: [
-    'n8n Automation', 'AI Workflow Design', 'Antigravity AI',
+    'Claude Code', 'Multi-Agent Teams', 'n8n Automation', 'AI Workflow Design', 'Antigravity AI',
     'Prompt Engineering', 'AI Integration', 'LLM Orchestration',
     'Agentic Coding', 'REST AI APIs'
   ],
 
   // AI Tools / Highlight Cards (featured items render as wide cards, listed first)
   aiTools: [
+    {
+      id: 'ai6',
+      icon: '⚡',
+      title: 'Full Stack AI Agent – Multi-Agent Software Team',
+      badge: 'Live',
+      featured: true,
+      desc: 'An autonomous multi-agent software engineering team of seven specialised Claude Code agents operating with a unified workflow, shared coding standards, and automatic quality gates. Features a real-time Agent Studio live collaboration animation.',
+      highlights: [
+        'Seven specialised roles: Lead, Planner, ASP.NET Core Backend, React/TS Frontend, QA, Docs, and DevOps',
+        'Real-time Agent Studio browser UI animating live agent collaboration, dispatching, and pipelines',
+        'Contract-driven development: ASP.NET Core OpenAPI specs automatically generate TypeScript client types',
+        'Strict quality gates with pre-commit builds, automated /code-review, /security-review, and zero unconfirmed pushes'
+      ],
+      tags: ['Claude Code', 'Multi-Agent', 'Agent Studio', 'ASP.NET Core', 'React', 'TypeScript', 'DevOps'],
+      link: 'https://full-stack-ai-agent-vybc.onrender.com/portfolio',
+      git: 'https://github.com/immanuelMM/Full-Stack-AI-Agent'
+    },
     {
       id: 'ai4',
       icon: '🧩',
@@ -379,7 +412,7 @@ async function loadExternalData() {
   }
 }
 
-const DATA_VERSION = 'v11'; // bump this when defaults change significantly
+const DATA_VERSION = 'v12'; // bump this when defaults change significantly
 
 function loadData() {
   const baseData = externalData || DEFAULT_DATA;
@@ -421,12 +454,23 @@ function loadData() {
       });
     }
 
+    // Ensure Full Stack AI Agent is in projects and webSystems
+    let finalProjects = (parsed.projects && parsed.projects.length > 0) ? parsed.projects : baseData.projects;
+    if (!finalProjects.some(p => p.id === 'proj_agent' || (p.title && p.title.includes('Full Stack AI Agent')))) {
+      finalProjects = [baseData.projects[0], ...finalProjects];
+    }
+
+    let finalWebSystems = (parsed.webSystems && parsed.webSystems.length > 0) ? parsed.webSystems : baseData.webSystems;
+    if (!finalWebSystems.some(w => w.id === 'ws_agent' || (w.title && w.title.includes('Full Stack AI Agent')))) {
+      finalWebSystems = [baseData.webSystems[0], ...finalWebSystems];
+    }
+
     // Merge: use saved scalar fields but keep default arrays if saved arrays are empty/missing
     return {
       ...baseData,
       ...parsed,
-      projects: (parsed.projects && parsed.projects.length > 0) ? parsed.projects : baseData.projects,
-      webSystems: (parsed.webSystems && parsed.webSystems.length > 0) ? parsed.webSystems : baseData.webSystems,
+      projects: finalProjects,
+      webSystems: finalWebSystems,
       staticProjects: (parsed.staticProjects && parsed.staticProjects.length > 0) ? parsed.staticProjects : baseData.staticProjects,
       experience: (parsed.experience && parsed.experience.length > 0) ? parsed.experience : baseData.experience,
       education: (parsed.education && parsed.education.length > 0) ? parsed.education : baseData.education,
@@ -843,7 +887,10 @@ function renderProjectCards(items, gridId, type) {
       <div class="project-title">${escHtml(item.title)}</div>
       <div class="project-desc">${escHtml(item.desc)}</div>
       <div class="project-tags">${(item.tags || []).map(t => `<span class="project-tag">${escHtml(t)}</span>`).join('')}</div>
-      ${item.link ? `<a class="project-link" href="${escHtml(item.link)}" target="_blank" rel="noopener">🔗 View Project ↗</a>` : ''}
+      <div class="project-links-wrap" style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:auto;">
+        ${item.link ? `<a class="project-link" href="${escHtml(item.link)}" target="_blank" rel="noopener">🔗 View Project ↗</a>` : ''}
+        ${item.github ? `<a class="project-link" href="${escHtml(item.github)}" target="_blank" rel="noopener">🐙 GitHub ↗</a>` : ''}
+      </div>
     </div>
   `).join('');
   updateSubsectionCount(gridId, items.length);
@@ -1564,12 +1611,36 @@ function generateWordDoc() {
             spacing: { before: 0, after: 20 }
           }));
         }
+        // Highlights (if any)
+        if (tool.highlights && tool.highlights.length) {
+          tool.highlights.forEach(h => {
+            children.push(bullet(h));
+          });
+        }
         // Tags
         if (tool.tags && tool.tags.length) {
           children.push(new Paragraph({
             children: tool.tags.map(t => tag(t)),
-            spacing: { before: 0, after: 60 }
+            spacing: { before: 0, after: 30 }
           }));
+        }
+        // Links: Live and GitHub
+        const linkRuns = [];
+        if (tool.link) {
+          linkRuns.push(
+            new TextRun({ text: '🔗 Live: ', bold: true, size: 16, font: 'Arial', color: DARK }),
+            hyperlink(tool.link, tool.link)
+          );
+        }
+        if (tool.git) {
+          if (linkRuns.length) linkRuns.push(new TextRun({ text: '   ', size: 16, font: 'Arial' }));
+          linkRuns.push(
+            new TextRun({ text: '🐙 GitHub: ', bold: true, size: 16, font: 'Arial', color: DARK }),
+            hyperlink(tool.git, tool.git)
+          );
+        }
+        if (linkRuns.length) {
+          children.push(new Paragraph({ children: linkRuns, spacing: { before: 0, after: 60 } }));
         }
       });
     }
@@ -1979,7 +2050,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       const lower = text.toLowerCase();
       if (lower.includes('project')) {
-        response = "Immanuel has worked on several amazing projects like the LoanPro Management System, MCGI Hub, and various E-Commerce sites. You can find them in the Projects section!";
+        response = "Immanuel has worked on several amazing projects like Full Stack AI Agent, Master BRD, LoanPro Management System, MCGI Hub, and various E-Commerce sites. You can find them in the AI & Automation and Projects sections!";
       } else if (lower.includes('contact') || lower.includes('email') || lower.includes('hire')) {
         response = "You can contact Immanuel at immanuel@qstrike.com or immanuelmahusay@mcgi.org. His phone number is +63 976 036 0023.";
       } else if (lower.includes('experience') || lower.includes('work')) {
