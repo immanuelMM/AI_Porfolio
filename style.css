@@ -102,7 +102,7 @@ button { font: inherit; color: inherit; }
     gap: 28px;
 }
 
-.avatar-wrap { display: flex; justify-content: flex-start; }
+.avatar-wrap { display: flex; justify-content: center; }
 .avatar-frame { position: relative; }
 
 .avatar-label { display: block; position: relative; border-radius: 50%; }
@@ -146,7 +146,7 @@ button { font: inherit; color: inherit; }
 }
 .toggle-avatar-btn .ico { width: 15px; height: 15px; }
 
-.sidebar-name-block { display: flex; flex-direction: column; gap: 6px; }
+.sidebar-name-block { display: flex; flex-direction: column; gap: 6px; align-items: center; text-align: center; }
 
 .name {
     font-size: 1.55rem;
@@ -159,7 +159,7 @@ button { font: inherit; color: inherit; }
 
 .status-badge {
     margin-top: 6px;
-    align-self: flex-start;
+    align-self: center;
     display: inline-flex;
     align-items: center;
     gap: 8px;
