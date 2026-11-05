@@ -52,7 +52,7 @@ function buildCvModel(data) {
 
   const links = [];
   if (show('section-social')) {
-    [['link-linkedin', 'LinkedIn'], ['link-github', 'GitHub'], ['link-twitter', 'X']].forEach(([key, label]) => {
+    [['link-linkedin', 'LinkedIn'], ['link-github', 'GitHub'], ['link-twitter', 'X'], ['link-3d', '3D Portfolio']].forEach(([key, label]) => {
       if (cvIsProfileUrl(data[key])) links.push({ label, text: cvShortUrl(data[key]), href: data[key] });
     });
   }

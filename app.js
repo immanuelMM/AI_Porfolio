@@ -27,6 +27,7 @@ const DEFAULT_DATA = {
   'link-github': 'https://github.com/immanuelmm',
   'link-linkedin': 'https://linkedin.com/in/',
   'link-twitter': 'https://twitter.com/',
+  'link-3d': 'https://imman-portfolio-3d.onrender.com/',
 
   // About
   'about-text': 'Experienced in developing seamless user interfaces using HTML, CSS, and JavaScript. Utilizes modern frameworks and libraries to enhance functionality and improve the user experience. Solid grasp of responsive design principles and excels in effective collaboration within a team environment.',
@@ -418,7 +419,7 @@ async function loadExternalData() {
   }
 }
 
-const DATA_VERSION = 'v12'; // bump this when defaults change significantly
+const DATA_VERSION = 'v13'; // bump this when defaults change significantly
 
 function loadData() {
   const baseData = externalData || DEFAULT_DATA;
@@ -951,7 +952,7 @@ function renderTextFields(data) {
     }
   });
   // Social links href
-  ['link-github', 'link-linkedin', 'link-twitter'].forEach(k => {
+  ['link-github', 'link-linkedin', 'link-twitter', 'link-3d'].forEach(k => {
     const el = document.getElementById(k);
     if (el && data[k]) el.href = data[k];
     const inp = document.getElementById('input-' + k);
@@ -1039,7 +1040,7 @@ function collectAndSave() {
   });
 
   // Collect social URLs from inputs
-  ['link-github', 'link-linkedin', 'link-twitter'].forEach(k => {
+  ['link-github', 'link-linkedin', 'link-twitter', 'link-3d'].forEach(k => {
     const inp = document.getElementById('input-' + k);
     if (inp) data[k] = inp.value.trim();
     const anchor = document.getElementById(k);
