@@ -555,12 +555,12 @@ function applyVisibility() {
       // Setup edit mode button visuals
       if (isVisible) {
         btn.classList.remove('off');
-        btn.innerHTML = '👁️ PDF: Show';
-        btn.title = 'Click to hide this section from PDF and web.';
+        btn.textContent = 'Shown';
+        btn.title = 'Click to hide this section from the site and the CV.';
       } else {
         btn.classList.add('off');
-        btn.innerHTML = '🙈 PDF: Hide';
-        btn.title = 'Click to show this section in PDF and web.';
+        btn.textContent = 'Hidden';
+        btn.title = 'Click to show this section on the site and the CV.';
       }
     }
   });
@@ -597,7 +597,7 @@ function initVisibilityToggles() {
         if (v[sec.id]) {
           showToast(`👁️ ${noun} will be included everywhere.`);
         } else {
-          showToast(`🙈 ${noun} is hidden from web and PDF.`);
+          showToast(`🙈 ${noun} is hidden from the site and the CV.`);
         }
       });
     }
@@ -796,7 +796,7 @@ function renderAISection(tools) {
   }
   grid.innerHTML = tools.map(item => {
     const isDrive = item.link && item.link.includes('drive.google.com');
-    const linkText = isDrive ? 'View Certificate ↗' : item.git ? 'Live Demo ↗' : 'View Workflow ↗';
+    const linkText = isDrive ? 'View certificate ↗' : item.git ? 'Live demo ↗' : 'View workflow ↗';
     return `
       <div class="ai-card${item.featured ? ' ai-card--featured' : ''}">
         <span class="ai-badge">${escHtml(item.badge || 'AI')}</span>
@@ -811,7 +811,7 @@ function renderAISection(tools) {
         <div class="ai-card-tags">${(item.tags || []).map(t => `<span class="ai-card-tag">${escHtml(t)}</span>`).join('')}</div>
         ${item.link || item.git ? `<div class="ai-card-links">
           ${item.link ? `<a class="ai-card-link ai-card-link--primary" href="${escHtml(item.link)}" target="_blank" rel="noopener">${linkText}</a>` : ''}
-          ${item.git ? `<a class="ai-card-link" href="${escHtml(item.git)}" target="_blank" rel="noopener">View Code on GitHub ↗</a>` : ''}
+          ${item.git ? `<a class="ai-card-link" href="${escHtml(item.git)}" target="_blank" rel="noopener">Code on GitHub ↗</a>` : ''}
         </div>` : ''}
       </div>
     `;
@@ -826,7 +826,7 @@ function renderExperience(items) {
   }
   list.innerHTML = items.map(item => `
     <div class="timeline-item" data-id="${item.id}" data-type="experience">
-      <button class="card-edit-btn edit-only" onclick="openEditModal('experience','${item.id}')">✏︎ Edit</button>
+      <button class="card-edit-btn edit-only" onclick="openEditModal('experience','${item.id}')">Edit</button>
       <div class="timeline-header">
         <span class="timeline-role">${escHtml(item.role)}</span>
         <span class="timeline-period">${escHtml(item.period)}</span>
@@ -849,7 +849,7 @@ function renderEducation(items) {
   }
   list.innerHTML = items.map(item => `
     <div class="timeline-item" data-id="${item.id}" data-type="education">
-      <button class="card-edit-btn edit-only" onclick="openEditModal('education','${item.id}')">✏︎ Edit</button>
+      <button class="card-edit-btn edit-only" onclick="openEditModal('education','${item.id}')">Edit</button>
       <div class="timeline-header">
         <span class="timeline-role">${escHtml(item.role)}</span>
         <span class="timeline-period">${escHtml(item.period)}</span>
@@ -869,11 +869,11 @@ function renderProjects(items) {
   if (grid && items && items.length > 0) {
     grid.innerHTML = items.map(item => `
       <div class="project-card" data-id="${item.id}">
-        <button class="card-edit-btn edit-only" onclick="openEditModal('projects','${item.id}')">✏︎ Edit</button>
+        <button class="card-edit-btn edit-only" onclick="openEditModal('projects','${item.id}')">Edit</button>
         <div class="project-title">${escHtml(item.title)}</div>
         <div class="project-desc">${escHtml(item.desc)}</div>
         <div class="project-tags">${(item.tags || []).map(t => `<span class="project-tag">${escHtml(t)}</span>`).join('')}</div>
-        ${item.link ? `<a class="project-link" href="${escHtml(item.link)}" target="_blank">🔗 View Project ↗</a>` : ''}
+        ${item.link ? `<a class="project-link" href="${escHtml(item.link)}" target="_blank">Live site ↗</a>` : ''}
       </div>
     `).join('');
   }
@@ -890,13 +890,13 @@ function renderProjectCards(items, gridId, type) {
   }
   grid.innerHTML = items.map(item => `
     <div class="project-card" data-id="${item.id}">
-      <button class="card-edit-btn edit-only" onclick="openEditModal('${type}','${item.id}')">✏︎ Edit</button>
+      <button class="card-edit-btn edit-only" onclick="openEditModal('${type}','${item.id}')">Edit</button>
       <div class="project-title">${escHtml(item.title)}</div>
       <div class="project-desc">${escHtml(item.desc)}</div>
       <div class="project-tags">${(item.tags || []).map(t => `<span class="project-tag">${escHtml(t)}</span>`).join('')}</div>
-      <div class="project-links-wrap" style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:auto;">
-        ${item.link ? `<a class="project-link" href="${escHtml(item.link)}" target="_blank" rel="noopener">🔗 View Project ↗</a>` : ''}
-        ${item.github ? `<a class="project-link" href="${escHtml(item.github)}" target="_blank" rel="noopener">🐙 GitHub ↗</a>` : ''}
+      <div class="project-links-wrap">
+        ${item.link ? `<a class="project-link" href="${escHtml(item.link)}" target="_blank" rel="noopener">Live site ↗</a>` : ''}
+        ${item.github ? `<a class="project-link" href="${escHtml(item.github)}" target="_blank" rel="noopener">Code ↗</a>` : ''}
       </div>
     </div>
   `).join('');
@@ -929,13 +929,13 @@ function renderCertifications(items) {
   }
   grid.innerHTML = items.map(item => `
     <div class="cert-card" data-id="${item.id}">
-      <button class="card-edit-btn edit-only" onclick="openEditModal('certifications','${item.id}')">✏︎ Edit</button>
+      <button class="card-edit-btn edit-only" onclick="openEditModal('certifications','${item.id}')">Edit</button>
       <div class="cert-icon">${item.icon || '🏆'}</div>
       <div class="cert-info">
         <div class="cert-name">${escHtml(item.name)}</div>
         <div class="cert-issuer">${escHtml(item.issuer)}</div>
         <div class="cert-year">${escHtml(item.year)}</div>
-        ${item.link ? `<a class="cert-verify-link" href="${escHtml(item.link)}" target="_blank" rel="noopener" title="View credential">🔗 Verify Credential ↗</a>` : ''}
+        ${item.link ? `<a class="cert-verify-link" href="${escHtml(item.link)}" target="_blank" rel="noopener" title="View credential">View credential ↗</a>` : ''}
       </div>
     </div>
   `).join('');
@@ -963,58 +963,6 @@ function renderTextFields(data) {
   document.getElementById('page-title').textContent = `Portfolio – ${data['full-name'] || 'Immanuel Mahusay'}`;
 }
 
-// ══════════════════════════════════════
-//  INITIAL RENDER
-// ══════════════════════════════════════
-function renderMelanieHeader() {
-  const header = document.getElementById('melanie-header');
-  if (!header) return;
-  const data = getData();
-
-  const name    = data['full-name'] || '';
-  const title   = data['job-title'] || '';
-  const phone   = data.phone || '';
-  const email   = (data.email || '').split('|')[0].split('·')[0].trim();
-  const liUrl   = data['link-linkedin'] || '';
-  const liLabel = liUrl.replace(/https?:\/\/(www\.)?linkedin\.com\/in\/?/, '').replace(/\/$/, '') || liUrl;
-  const usePhoto = data['use-profile-pic'] !== false;
-  const avatarEl = document.getElementById('avatar-img');
-  const photoSrc = avatarEl ? avatarEl.src : 'profile.JPG';
-  const aboutEl  = document.getElementById('about-text');
-  const about    = aboutEl ? aboutEl.textContent.trim() : (data['about-text'] || '');
-
-  const contacts = [
-    phone   ? `<span class="mh-ci"><span class="mh-ci-icon">☎</span>${phone}</span>` : '',
-    email   ? `<span class="mh-ci"><span class="mh-ci-icon">✉</span>${email}</span>` : '',
-    liLabel ? `<span class="mh-ci"><span class="mh-ci-icon mh-ci-li">in</span>${liLabel}</span>` : '',
-  ].filter(Boolean).join('');
-
-  // Build compact project pills for the PDF header (up to 4 projects)
-  const topProjects = (data.projects || []).slice(0, 4);
-  const projPills = topProjects.map(p =>
-    p.link
-      ? `<a class="mh-proj-pill" href="${escHtml(p.link)}">${escHtml(p.title.split('–')[0].split('-')[0].trim())}</a>`
-      : `<span class="mh-proj-pill">${escHtml(p.title.split('–')[0].split('-')[0].trim())}</span>`
-  ).join('<span class="mh-proj-dot">·</span>');
-
-  header.innerHTML = `
-    <div class="mh-bar">${contacts}</div>
-    <div class="mh-body">
-      <div class="mh-text">
-        <h1 class="mh-name">${name}</h1>
-        <p class="mh-title">${title}</p>
-        <p class="mh-about">${about}</p>
-        ${topProjects.length ? `
-        <div class="mh-projects">
-          <span class="mh-proj-label">KEY PROJECTS</span>
-          ${projPills}
-        </div>` : ''}
-      </div>
-      ${usePhoto && photoSrc ? `<div class="mh-slash-accent"></div><div class="mh-photo-panel"><img class="mh-photo" src="${photoSrc}" alt="" /></div>` : ''}
-    </div>
-    <div class="mh-sep"></div>
-  `;
-}
 
 function renderAll() {
   const data = getData();
@@ -1028,7 +976,6 @@ function renderAll() {
   renderCertifications(data.certifications || []);
   renderAISkillsSidebar(data.aiSkills || []);
   renderAISection(data.aiTools || []);
-  renderMelanieHeader();
 
   // Avatar
   const savedAvatar = localStorage.getItem('portfolio_avatar') || data.avatarDataUrl;
@@ -1328,444 +1275,20 @@ function genId() {
 }
 
 // ══════════════════════════════════════
+//  DOWNLOAD CV  (CV building lives in cv.js)
+// ══════════════════════════════════════
+function openCvModal() {
+  document.getElementById('cv-modal-overlay').classList.remove('hidden');
+  document.getElementById('cv-pdf-btn').focus();
+}
+
+function closeCvModal() {
+  document.getElementById('cv-modal-overlay').classList.add('hidden');
+}
+
+// ══════════════════════════════════════
 //  INIT
 // ══════════════════════════════════════
-// ══════════════════════════════════════
-//  PDF / PRINT
-// ══════════════════════════════════════
-let selectedLayout = 'modern';
-
-function resetPdfModal() {
-  document.getElementById('pdf-step-layout').classList.remove('hidden');
-  document.getElementById('pdf-step-color').classList.add('hidden');
-  document.getElementById('pdf-modal-subtitle').textContent = 'Choose a layout for your CV';
-}
-
-function openPdfModal() {
-  document.getElementById('pdf-modal-overlay').classList.remove('hidden');
-  resetPdfModal();
-}
-
-function closePdfModal() {
-  document.getElementById('pdf-modal-overlay').classList.add('hidden');
-}
-
-const PDF_THEMES = ['modern', 'classic', 'clean-yellow', 'clean-blue', 'clean-green', 'clean-rose', 'clean-purple', 'clean-teal', 'melanie-yellow', 'melanie-blue', 'melanie-green', 'melanie-rose', 'melanie-purple', 'melanie-teal', 'melanie-dark-navy', 'melanie-dark-slate', 'melanie-dark-purple', 'melanie-classic', 'bold-yellow', 'bold-blue', 'bold-green', 'bold-rose', 'bold-purple', 'bold-teal'];
-
-function triggerPrintWithTheme(theme) {
-  // Clear themes and layouts
-  PDF_THEMES.forEach(t => document.body.classList.remove(`pdf-theme-${t}`));
-  document.body.classList.remove('pdf-layout-classic', 'pdf-layout-modern');
-
-  // Apply layout class
-  if (selectedLayout === 'classic') {
-    document.body.classList.add('pdf-layout-classic');
-  } else {
-    document.body.classList.add('pdf-layout-modern');
-  }
-
-  // Apply theme class
-  if (theme !== 'modern') document.body.classList.add(`pdf-theme-${theme}`);
-
-  // For Melanie themes: hide the two orphaned dividers that sit between hidden
-  // elements at the top of the sidebar (they create a blank gap before SKILLS)
-  const orphanedDividers = [];
-  if (theme.startsWith('melanie')) {
-    const pdfBtn = document.querySelector('.sidebar-pdf-btn');
-    const contactSection = document.getElementById('section-contact');
-    [pdfBtn, contactSection].forEach(el => {
-      if (el) {
-        const next = el.nextElementSibling;
-        if (next && next.classList.contains('sidebar-divider')) {
-          next.dataset.melanieHide = '1';
-          next.style.setProperty('display', 'none', 'important');
-          orphanedDividers.push(next);
-        }
-      }
-    });
-  }
-
-  closePdfModal();
-  const label = theme.replace('-', ' ').replace(/\b\w/g, c => c.toUpperCase());
-  showToast(`🖨️ Opening print dialog (${label})…`);
-  setTimeout(() => {
-    window.print();
-    setTimeout(() => {
-      // Clean up themes and layouts
-      PDF_THEMES.forEach(t => document.body.classList.remove(`pdf-theme-${t}`));
-      document.body.classList.remove('pdf-layout-classic', 'pdf-layout-modern');
-      orphanedDividers.forEach(el => {
-        el.style.removeProperty('display');
-        delete el.dataset.melanieHide;
-      });
-    }, 1500);
-  }, 400);
-}
-
-function triggerPrint() {
-  openPdfModal();
-}
-
-// ── AI One-Column Print ──
-function triggerAiColumnPrint() {
-  closePdfModal();
-  // Clear existing themes/layouts
-  PDF_THEMES.forEach(t => document.body.classList.remove(`pdf-theme-${t}`));
-  document.body.classList.remove('pdf-layout-classic', 'pdf-layout-modern');
-  document.body.classList.add('pdf-ai-column');
-
-  showToast('🤖 Generating AI-readable one-column CV…');
-  setTimeout(() => {
-    window.print();
-    setTimeout(() => {
-      document.body.classList.remove('pdf-ai-column');
-    }, 1500);
-  }, 400);
-}
-
-// ── Word Document Generation ──
-function generateWordDoc() {
-  closePdfModal();
-  showToast('📝 Generating Word document…');
-
-  const data = getData();
-
-  // Check if docx library is loaded
-  if (typeof docx === 'undefined') {
-    showToast('❌ Word library not loaded. Check your internet connection.');
-    return;
-  }
-
-  const {
-    Document, Packer, Paragraph, TextRun, HeadingLevel,
-    AlignmentType, BorderStyle, ShadingType, TableRow, TableCell,
-    Table, WidthType, VerticalAlign, convertInchesToTwip,
-    ExternalHyperlink
-  } = docx;
-
-  // Helper: clickable hyperlink run
-  function hyperlink(text, url) {
-    if (!url) return null;
-    return new ExternalHyperlink({
-      link: url,
-      children: [
-        new TextRun({
-          text,
-          style: 'Hyperlink',
-          size: 17,
-          font: 'Arial',
-          color: '2563EB',
-          underline: { type: 'single' }
-        })
-      ]
-    });
-  }
-
-  const ACCENT = '2563EB';
-  const DARK   = '111827';
-  const GRAY   = '6B7280';
-  const LINE   = 'E5E7EB';
-
-  function sectionHeading(text) {
-    return new Paragraph({
-      children: [
-        new TextRun({
-          text: text.toUpperCase(),
-          bold: true,
-          size: 22,
-          color: ACCENT,
-          font: 'Arial',
-        })
-      ],
-      border: {
-        bottom: { style: BorderStyle.SINGLE, size: 6, color: LINE }
-      },
-      spacing: { before: 240, after: 80 }
-    });
-  }
-
-  function subHeading(role, company, period) {
-    return [
-      new Paragraph({
-        children: [
-          new TextRun({ text: role, bold: true, size: 20, color: DARK, font: 'Arial' }),
-          new TextRun({ text: '  •  ', size: 20, color: GRAY, font: 'Arial' }),
-          new TextRun({ text: company, size: 20, color: GRAY, font: 'Arial' }),
-        ],
-        spacing: { before: 80, after: 20 }
-      }),
-      new Paragraph({
-        children: [
-          new TextRun({ text: period, size: 17, color: GRAY, italics: true, font: 'Arial' })
-        ],
-        spacing: { before: 0, after: 40 }
-      })
-    ];
-  }
-
-  function bullet(text) {
-    return new Paragraph({
-      children: [new TextRun({ text, size: 18, color: DARK, font: 'Arial' })],
-      bullet: { level: 0 },
-      spacing: { before: 20, after: 20 }
-    });
-  }
-
-  function tag(text) {
-    return new TextRun({ text: `[${text}] `, size: 16, color: GRAY, font: 'Arial' });
-  }
-
-  const children = [];
-
-  // ── Header ──
-  children.push(new Paragraph({
-    children: [new TextRun({
-      text: data['full-name'] || 'Full Name',
-      bold: true, size: 48, color: DARK, font: 'Arial'
-    })],
-    spacing: { before: 0, after: 40 }
-  }));
-  children.push(new Paragraph({
-    children: [new TextRun({
-      text: data['job-title'] || '',
-      size: 24, color: ACCENT, bold: true, font: 'Arial'
-    })],
-    spacing: { before: 0, after: 40 }
-  }));
-  const contactLine = [
-    data['email'], data['phone'], data['location'], data['website']
-  ].filter(Boolean).join('  |  ');
-  children.push(new Paragraph({
-    children: [new TextRun({ text: contactLine, size: 17, color: GRAY, font: 'Arial' })],
-    border: { bottom: { style: BorderStyle.SINGLE, size: 4, color: LINE } },
-    spacing: { before: 0, after: 200 }
-  }));
-
-  // ── About ──
-  if (data['about-text']) {
-    children.push(sectionHeading('About'));
-    children.push(new Paragraph({
-      children: [new TextRun({ text: data['about-text'], size: 18, color: DARK, font: 'Arial' })],
-      spacing: { before: 40, after: 120 }
-    }));
-  }
-
-  // ── Experience ──
-  if (data.experience && data.experience.length) {
-    children.push(sectionHeading('Work Experience'));
-    data.experience.forEach(exp => {
-      children.push(...subHeading(exp.role, exp.company, exp.period));
-      (exp.bullets || []).forEach(b => children.push(bullet(b)));
-      children.push(new Paragraph({ spacing: { before: 60 } }));
-    });
-  }
-
-  // ── Education ──
-  if (data.education && data.education.length) {
-    children.push(sectionHeading('Education'));
-    data.education.forEach(edu => {
-      children.push(...subHeading(edu.role, edu.company, edu.period));
-      (edu.bullets || []).forEach(b => children.push(bullet(b)));
-    });
-  }
-
-  // ── Skills ──
-  if (data.skillCategories && data.skillCategories.length) {
-    children.push(sectionHeading('Skills'));
-    data.skillCategories.forEach(cat => {
-      children.push(new Paragraph({
-        children: [
-          new TextRun({ text: cat.name + ':  ', bold: true, size: 18, color: DARK, font: 'Arial' }),
-          ...(cat.skills || []).map(s => tag(s))
-        ],
-        spacing: { before: 40, after: 40 }
-      }));
-    });
-  }
-
-  // ── AI & Automation (dedicated section) ──
-  const hasAiSkills = data.aiSkills && data.aiSkills.length;
-  const hasAiTools  = data.aiTools  && data.aiTools.length;
-  if (hasAiSkills || hasAiTools) {
-    children.push(sectionHeading('AI & Automation'));
-
-    // Skills tag line
-    if (hasAiSkills) {
-      children.push(new Paragraph({
-        children: [
-          new TextRun({ text: 'Skills:  ', bold: true, size: 18, color: DARK, font: 'Arial' }),
-          ...data.aiSkills.map(s => tag(s))
-        ],
-        spacing: { before: 40, after: 80 }
-      }));
-    }
-
-    // Detailed AI tool cards
-    if (hasAiTools) {
-      data.aiTools.forEach(tool => {
-        // Title + badge on one line
-        children.push(new Paragraph({
-          children: [
-            new TextRun({ text: tool.title, bold: true, size: 19, color: DARK, font: 'Arial' }),
-            new TextRun({ text: `  [${tool.badge || 'AI'}]`, size: 16, color: ACCENT, bold: true, font: 'Arial' }),
-          ],
-          spacing: { before: 80, after: 20 }
-        }));
-        // Description
-        if (tool.desc) {
-          children.push(new Paragraph({
-            children: [new TextRun({ text: tool.desc, size: 17, color: DARK, font: 'Arial' })],
-            spacing: { before: 0, after: 20 }
-          }));
-        }
-        // Highlights (if any)
-        if (tool.highlights && tool.highlights.length) {
-          tool.highlights.forEach(h => {
-            children.push(bullet(h));
-          });
-        }
-        // Tags
-        if (tool.tags && tool.tags.length) {
-          children.push(new Paragraph({
-            children: tool.tags.map(t => tag(t)),
-            spacing: { before: 0, after: 30 }
-          }));
-        }
-        // Links: Live and GitHub
-        const linkRuns = [];
-        if (tool.link) {
-          linkRuns.push(
-            new TextRun({ text: '🔗 Live: ', bold: true, size: 16, font: 'Arial', color: DARK }),
-            hyperlink(tool.link, tool.link)
-          );
-        }
-        if (tool.git) {
-          if (linkRuns.length) linkRuns.push(new TextRun({ text: '   ', size: 16, font: 'Arial' }));
-          linkRuns.push(
-            new TextRun({ text: '🐙 GitHub: ', bold: true, size: 16, font: 'Arial', color: DARK }),
-            hyperlink(tool.git, tool.git)
-          );
-        }
-        if (linkRuns.length) {
-          children.push(new Paragraph({ children: linkRuns, spacing: { before: 0, after: 60 } }));
-        }
-      });
-    }
-
-    // Spacer after section
-    children.push(new Paragraph({ spacing: { before: 40, after: 0 } }));
-  }
-
-  // ── Projects ──
-  if (data.projects && data.projects.length) {
-    children.push(sectionHeading('Projects'));
-    data.projects.forEach(p => {
-      // Title
-      children.push(new Paragraph({
-        children: [new TextRun({ text: p.title, bold: true, size: 19, color: DARK, font: 'Arial' })],
-        spacing: { before: 80, after: 20 }
-      }));
-      // Description
-      if (p.desc) {
-        children.push(new Paragraph({
-          children: [new TextRun({ text: p.desc, size: 17, color: DARK, font: 'Arial' })],
-          spacing: { before: 0, after: 16 }
-        }));
-      }
-      // Tags
-      if (p.tags && p.tags.length) {
-        children.push(new Paragraph({
-          children: p.tags.map(t => tag(t)),
-          spacing: { before: 0, after: 16 }
-        }));
-      }
-      // Links row: live site + github
-      const linkChildren = [];
-      if (p.link) {
-        linkChildren.push(
-          new TextRun({ text: '🔗 Live: ', bold: true, size: 17, font: 'Arial', color: DARK }),
-          hyperlink(p.link, p.link),
-        );
-      }
-      if (p.github) {
-        if (linkChildren.length) linkChildren.push(new TextRun({ text: '   ', size: 17, font: 'Arial' }));
-        linkChildren.push(
-          new TextRun({ text: '🐙 GitHub: ', bold: true, size: 17, font: 'Arial', color: DARK }),
-          hyperlink(p.github, p.github),
-        );
-      }
-      if (linkChildren.length) {
-        children.push(new Paragraph({ children: linkChildren, spacing: { before: 0, after: 60 } }));
-      } else {
-        children.push(new Paragraph({ spacing: { before: 0, after: 60 } }));
-      }
-    });
-  }
-
-  // ── Certifications ──
-  if (data.certifications && data.certifications.length) {
-    children.push(sectionHeading('Certifications'));
-    data.certifications.forEach(c => {
-      // Name + issuer + year
-      children.push(new Paragraph({
-        children: [
-          new TextRun({ text: c.name, bold: true, size: 18, color: DARK, font: 'Arial' }),
-          new TextRun({ text: `  –  ${c.issuer}  (${c.year})`, size: 17, color: GRAY, font: 'Arial' })
-        ],
-        spacing: { before: 40, after: 10 }
-      }));
-      // Verification link (if any)
-      if (c.link) {
-        children.push(new Paragraph({
-          children: [
-            new TextRun({ text: '🔗 Verify: ', bold: true, size: 16, font: 'Arial', color: DARK }),
-            hyperlink(c.link, c.link)
-          ],
-          spacing: { before: 0, after: 40 }
-        }));
-      }
-    });
-  }
-
-  // ── Languages ──
-  if (data.languages && data.languages.length) {
-    children.push(sectionHeading('Languages'));
-    data.languages.forEach(l => {
-      children.push(new Paragraph({
-        children: [
-          new TextRun({ text: l.name, bold: true, size: 18, color: DARK, font: 'Arial' }),
-          new TextRun({ text: `  –  ${l.level}`, size: 17, color: GRAY, font: 'Arial' })
-        ],
-        spacing: { before: 40, after: 40 }
-      }));
-    });
-  }
-
-  const doc = new Document({
-    sections: [{
-      properties: {
-        page: {
-          margin: {
-            top: convertInchesToTwip(0.75),
-            bottom: convertInchesToTwip(0.75),
-            left: convertInchesToTwip(0.9),
-            right: convertInchesToTwip(0.9),
-          }
-        }
-      },
-      children
-    }]
-  });
-
-  Packer.toBlob(doc).then(blob => {
-    const name = (data['full-name'] || 'CV').replace(/\s+/g, '_');
-    saveAs(blob, `${name}_CV.docx`);
-    showToast('✅ Word document downloaded!');
-  }).catch(err => {
-    console.error('Word generation error:', err);
-    showToast('❌ Word generation failed. Check console.');
-  });
-}
 
 document.addEventListener('DOMContentLoaded', async () => {
   await loadExternalData();
@@ -1808,59 +1331,14 @@ document.addEventListener('DOMContentLoaded', async () => {
   const nameEl = document.getElementById('full-name');
   if (nameEl) nameObs.observe(nameEl, { characterData: true, childList: true, subtree: true });
 
-  // ── PDF Buttons ──
-  document.getElementById('pdf-fab').addEventListener('click', triggerPrint);
-  document.getElementById('sidebar-pdf-btn').addEventListener('click', triggerPrint);
-  document.getElementById('mobile-pdf-btn').addEventListener('click', triggerPrint);
-
-  // ── PDF Modal ──
-  document.getElementById('pdf-modal-close').addEventListener('click', closePdfModal);
-  document.getElementById('pdf-modal-overlay').addEventListener('click', (e) => {
-    if (e.target === e.currentTarget) closePdfModal();
+  // ── Download CV ──
+  ['sidebar-pdf-btn', 'mobile-pdf-btn'].forEach(id => document.getElementById(id).addEventListener('click', openCvModal));
+  document.getElementById('cv-modal-close').addEventListener('click', closeCvModal);
+  document.getElementById('cv-modal-overlay').addEventListener('click', e => {
+    if (e.target === e.currentTarget) closeCvModal();
   });
-  // ── PDF Layout selection buttons ──
-  document.querySelectorAll('.pdf-layout-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      selectedLayout = btn.dataset.layout;
-      
-      // Update default layout theme option card
-      const defaultBtn = document.getElementById('pdf-default-theme-btn');
-      const defaultSwatch = document.getElementById('pdf-default-theme-swatch');
-      const defaultName = document.getElementById('pdf-default-theme-name');
-      const defaultDesc = document.getElementById('pdf-default-theme-desc');
-      
-      if (selectedLayout === 'classic') {
-        defaultBtn.dataset.theme = 'classic';
-        defaultSwatch.className = 'pdf-theme-swatch pdf-theme-swatch--classic';
-        defaultName.textContent = 'Classic';
-        defaultDesc.textContent = 'Dark slate · Green accents';
-      } else {
-        defaultBtn.dataset.theme = 'modern';
-        defaultSwatch.className = 'pdf-theme-swatch pdf-theme-swatch--modern';
-        defaultName.textContent = 'Modern';
-        defaultDesc.textContent = 'Dark purple sidebar';
-      }
-
-      // Switch step view
-      document.getElementById('pdf-step-layout').classList.add('hidden');
-      document.getElementById('pdf-step-color').classList.remove('hidden');
-      document.getElementById('pdf-modal-subtitle').textContent = `Customize your ${selectedLayout === 'classic' ? 'Classic' : 'Modern'} CV color`;
-    });
-  });
-
-  // ── PDF Back button click ──
-  document.getElementById('pdf-back-btn').addEventListener('click', resetPdfModal);
-
-  // ── PDF Color/Theme selection buttons ──
-  document.querySelectorAll('.pdf-modal [data-theme]').forEach(btn => {
-    btn.addEventListener('click', () => triggerPrintWithTheme(btn.dataset.theme));
-  });
-
-  // ── Word Doc button ──
-  document.getElementById('pdf-word-btn').addEventListener('click', generateWordDoc);
-
-  // ── AI One-Column PDF button ──
-  document.getElementById('pdf-ai-btn').addEventListener('click', triggerAiColumnPrint);
+  document.getElementById('cv-pdf-btn').addEventListener('click', () => { closeCvModal(); downloadCvPdf(); });
+  document.getElementById('cv-word-btn').addEventListener('click', () => { closeCvModal(); downloadCvWord(); });
 
   // ── Edit trigger ──
   document.getElementById('edit-trigger').addEventListener('click', openLoginModal);
@@ -1970,6 +1448,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (e.key === 'Escape') {
       closeLoginModal();
       closeItemModal();
+      closeCvModal();
     }
   });
 
