@@ -18,7 +18,7 @@ const DEFAULT_DATA = {
   'full-name': 'Immanuel Mahusay',
   'job-title': 'Software Engineer',
   'availability': 'Open to opportunities',
-  'email': 'immanuel@qstrike.com | immanuelmahusay@mcgi.org',
+  'email': 'mahusayimmanuel21@gmail.com',
   'phone': '+63 976 036 0023',
   'location': 'P2-B2-L35 Highview, Apalit, Philippines',
   'website': 'Filipino  •  Dec 24, 1991',
@@ -1539,7 +1539,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       if (lower.includes('project')) {
         response = "Immanuel has worked on several amazing projects like Full Stack AI Agent, Master BRD, LoanPro Management System, MCGI Hub, and various E-Commerce sites. You can find them in the AI & Automation and Projects sections!";
       } else if (lower.includes('contact') || lower.includes('email') || lower.includes('hire')) {
-        response = "You can contact Immanuel at immanuel@qstrike.com or immanuelmahusay@mcgi.org. His phone number is +63 976 036 0023.";
+        response = "You can contact Immanuel at mahusayimmanuel21@gmail.com. His phone number is +63 976 036 0023.";
       } else if (lower.includes('experience') || lower.includes('work')) {
         response = "He is currently a Software Engineer Lead at QuickStrike Innovation Phil., and a Front-End Developer at MCGI IT. He has over 10 years of overall experience.";
       } else if (lower.includes('skill') || lower.includes('tech')) {

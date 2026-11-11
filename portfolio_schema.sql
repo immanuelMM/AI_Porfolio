@@ -146,7 +146,7 @@ CREATE TABLE IF NOT EXISTS ai_tool_tags (
 
 -- Insert Profile
 INSERT INTO profiles (id, full_name, job_title, availability, email, phone, location, website_info, about_text, github_url, linkedin_url, twitter_url)
-VALUES (1, 'Immanuel Mahusay', 'Software Engineer', 'Open to opportunities', 'immanuel@qstrike.com | immanuelmahusay@mcgi.org', '+63 976 036 0023', 'P2-B2-L35 Highview, Apalit, Philippines', 'Filipino  •  Dec 24, 1991', 'Experienced in developing seamless user interfaces using HTML, CSS, and JavaScript. Utilizes modern frameworks and libraries to enhance functionality and improve the user experience. Solid grasp of responsive design principles and excels in effective collaboration within a team environment.', 'https://github.com/immanuelmm', 'https://linkedin.com/in/', 'https://twitter.com/');
+VALUES (1, 'Immanuel Mahusay', 'Software Engineer', 'Open to opportunities', 'mahusayimmanuel21@gmail.com', '+63 976 036 0023', 'P2-B2-L35 Highview, Apalit, Philippines', 'Filipino  •  Dec 24, 1991', 'Experienced in developing seamless user interfaces using HTML, CSS, and JavaScript. Utilizes modern frameworks and libraries to enhance functionality and improve the user experience. Solid grasp of responsive design principles and excels in effective collaboration within a team environment.', 'https://github.com/immanuelmm', 'https://linkedin.com/in/', 'https://twitter.com/');
 
 -- Skill Categories
 INSERT INTO skill_categories (id, profile_id, name, sort_order) VALUES (1, 1, 'Frontend', 1);
